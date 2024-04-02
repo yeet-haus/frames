@@ -1,6 +1,7 @@
 import { serveStatic } from '@hono/node-server/serve-static';
-import { Frog } from 'frog';
+import { Frog, TextInput, Button } from 'frog';
 import { Box, Heading, vars } from './ui.js';
+import { abi } from './abi.js';
 import { devtools } from 'frog/dev';
 // import { neynar } from 'frog/hubs'
 
@@ -9,6 +10,8 @@ export const app = new Frog({
   // hub: neynar({ apiKey: 'NEYNAR_FROG_FM' })
   ui: { vars },
 }).frame('/', c => {
+  // const { inputText } = c;
+  // const amount = inputText;
   return c.res({
     image: (
       <Box
@@ -21,6 +24,23 @@ export const app = new Frog({
         <Heading size="64">YEET</Heading>
       </Box>
     ),
+    intents: [
+      <TextInput placeholder="Amount of ETH" />,
+      <Button.Transaction target="/yeet">YEET</Button.Transaction>,
+    ],
+  });
+});
+
+app.transaction('/yeet', c => {
+  // Contract transaction response.
+  return c.contract({
+    abi,
+    chainId: 'eip155:8453',
+    // chainId: 'eip155:11155111',
+    functionName: 'contributeEth',
+    // args: ['value: amount'],
+    // value: amount,
+    to: '0x8bd3eca1b83188f46171e6ef104c80fc82ceb861',
   });
 });
 
