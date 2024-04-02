@@ -1,15 +1,15 @@
-import { serveStatic } from '@hono/node-server/serve-static';
-import { Frog, TextInput, Button } from 'frog';
-import { Box, Heading, vars } from './ui.js';
-import { abi } from './abi.js';
-import { devtools } from 'frog/dev';
+import { serveStatic } from "@hono/node-server/serve-static";
+import { Frog, TextInput, Button } from "frog";
+import { Box, Heading, vars } from "./ui.js";
+import yeeterAbi from "./utils/YeeterAbi.json";
+import { devtools } from "frog/dev";
 // import { neynar } from 'frog/hubs'
 
 export const app = new Frog({
   // Supply a Hub to enable frame verification.
   // hub: neynar({ apiKey: 'NEYNAR_FROG_FM' })
   ui: { vars },
-}).frame('/', c => {
+}).frame("/", (c) => {
   // const { inputText } = c;
   // const amount = inputText;
   return c.res({
@@ -31,19 +31,18 @@ export const app = new Frog({
   });
 });
 
-app.transaction('/yeet', c => {
+app.transaction("/yeet", (c) => {
   // Contract transaction response.
   return c.contract({
-    abi,
-    chainId: 'eip155:8453',
+    abi: yeeterAbi,
+    chainId: "eip155:8453",
     // chainId: 'eip155:11155111',
-    functionName: 'contributeEth',
-    // args: ['value: amount'],
-    // value: amount,
-    to: '0x8bd3eca1b83188f46171e6ef104c80fc82ceb861',
+    functionName: "contributeEth",
+    args: ["10000000000000000", "1st Yeet from a frame"],
+    to: "0x8bd3eca1b83188f46171e6ef104c80fc82ceb861",
   });
 });
 
-app.use('/*', serveStatic({ root: './public' }));
+app.use("/*", serveStatic({ root: "./public" }));
 
 devtools(app, { serveStatic });
