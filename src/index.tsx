@@ -1,7 +1,6 @@
 import { serveStatic } from "@hono/node-server/serve-static";
 import { Frog, TextInput, Button } from "frog";
 import { Box, Heading, vars } from "./ui.js";
-import yeeterAbi from "./utils/YeeterAbi.json";
 import { devtools } from "frog/dev";
 // import { neynar } from 'frog/hubs'
 
@@ -34,11 +33,20 @@ export const app = new Frog({
 app.transaction("/yeet", (c) => {
   // Contract transaction response.
   return c.contract({
-    abi: yeeterAbi,
+    abi: [
+      {
+        inputs: [{ internalType: "string", name: "message", type: "string" }],
+        name: "contributeEth",
+        outputs: [],
+        stateMutability: "payable",
+        type: "function",
+      },
+    ],
     chainId: "eip155:8453",
     // chainId: 'eip155:11155111',
     functionName: "contributeEth",
-    args: ["10000000000000000", "1st Yeet from a frame"],
+    value: 10000000000000000n,
+    args: ["1st Yeet from a frame"],
     to: "0x8bd3eca1b83188f46171e6ef104c80fc82ceb861",
   });
 });
