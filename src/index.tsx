@@ -50,7 +50,7 @@ export const app = new Frog({
       >
         <Heading size="64">YEET</Heading>
         <Text>
-          Raised {balance} of the {goal} goal
+          Raised {balance} eth of the {goal} eth goal
         </Text>
         <Text>
           Starts {startTime} and ends {endTime}
