@@ -7,17 +7,24 @@ import { devtools } from "frog/dev";
 // import { neynar } from 'frog/hubs'
 import { formatEther } from "viem";
 import { formatShortDateTimeFromSeconds, postData } from "./helpers.js";
-
-const GRAPH_ENDPOINT = `https://gateway-arbitrum.network.thegraph.com/api/${process.env.GRAPH_KEY}/subgraphs/id/6vyAqRpCyrhLsfd6TfYAssvKywKhxJykkDbPxJZ4ZcEr`;
+import { GRAPH_ENDPOINT } from "./constants.js";
 
 export const app = new Frog({
-  // Supply a Hub to enable frame verification.
-  // hub: neynar({ apiKey: 'NEYNAR_FROG_FM' })
+  assetsPath: "/",
+  basePath: "/api",
+  // browserLocation: "",
+  verify: "silent",
+  secret: process.env.FROG_SECRET,
   ui: { vars },
-}).frame("/", async (c) => {
-  //todo: why won't this work with given a path, need to pass a yeeter shaman address in the url
-  // const yeeterid = c.req.param("yeeterid");
-  const yeeterid = "0x7a023e66b1f607ee9ab3f384198adf668847a4d9";
+});
+
+app.frame("/yeeter/:daoid/:yeeterid", async (c) => {
+  // const yeeterid = "0x7a023e66b1f607ee9ab3f384198adf668847a4d9";
+  // const daoid = "0xa150835a5e25a197659e85a42649b5cea8128bb2";
+  const yeeterid = c.req.param("yeeterid");
+  const daoid = c.req.param("daoid");
+
+  console.log("daoid", daoid);
 
   const yeetData = await postData(GRAPH_ENDPOINT, {
     query: `{yeeter(id: "${yeeterid}") {id endTime startTime minTribute multiplier goal balance}}`,
