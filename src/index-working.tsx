@@ -1,32 +1,32 @@
-import 'dotenv/config';
+import "dotenv/config";
 
-import { serveStatic } from '@hono/node-server/serve-static';
-import { Frog, Button } from 'frog';
-import { Box, Column, Columns, Heading, Text, VStack, vars } from './ui.js';
-import { devtools } from 'frog/dev';
-import { formatEther } from 'viem';
+import { serveStatic } from "@hono/node-server/serve-static";
+import { Frog, TextInput, Button } from "frog";
+import { Box, Heading, Text, vars } from "./ui.js";
+import { devtools } from "frog/dev";
+import { formatEther } from "viem";
 import {
   addParsedContent,
   formatShortDateTimeFromSeconds,
   postData,
-} from './helpers.js';
-import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from './constants.js';
+} from "./helpers.js";
+import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from "./constants.js";
 
 export const app = new Frog({
-  assetsPath: '/',
-  basePath: '/api',
-  browserLocation: 'https://app.yeet.haus/',
-  verify: 'silent',
+  assetsPath: "/",
+  basePath: "/api",
+  browserLocation: "https://app.yeet.haus/",
+  verify: "silent",
   secret: process.env.FROG_SECRET,
   ui: { vars },
   initialState: {
-    minTribute: '0',
-    shamanAddress: '',
+    minTribute: "0",
+    shamanAddress: "",
   },
 });
 
-app.frame('/yeeter/:yeeterid', async c => {
-  const yeeterid = c.req.param('yeeterid');
+app.frame("/yeeter/:yeeterid", async (c) => {
+  const yeeterid = c.req.param("yeeterid");
 
   const yeetData = await postData(GRAPH_ENDPOINT, {
     query: `{yeeter(id: "${yeeterid}") {id endTime startTime minTribute multiplier goal balance dao { id }}}`,
@@ -97,59 +97,36 @@ app.frame('/yeeter/:yeeterid', async c => {
   const mission = meta?.missionStatement;
   const balance = formatEther(yeetData.data.yeeter.balance);
   const endTime = formatShortDateTimeFromSeconds(yeetData.data.yeeter.endTime);
-  // const startTime = formatShortDateTimeFromSeconds(
-  //   yeetData.data.yeeter.startTime
-  // );
+  const startTime = formatShortDateTimeFromSeconds(
+    yeetData.data.yeeter.startTime
+  );
   const goal = formatEther(yeetData.data.yeeter.goal);
   const minTribute = formatEther(yeetData.data.yeeter.minTribute);
 
   return c.res({
-    action: '/success',
+    action: "/success",
     image: (
-      <Columns grow>
-        <Column
-          backgroundColor="banality"
-          color="death"
-          width="3/4"
-          padding="12"
-          alignHorizontal="left"
-          alignVertical="top"
-          textTransform="uppercase"
-        >
-          <VStack gap="8">
-            <Heading size="32">{name}</Heading>
-            <Text size="24">Mission</Text>
-            <Text size="16">{mission}</Text>
-            <Text size="24">WTF</Text>
-            <Text size="16">
-              YEET {minTribute} ETH supporting {name}. The ETH you contribute
-              gives you $nvTREE tokens in our project's DAO.
-            </Text>
-          </VStack>
-        </Column>
-        <Column
-          backgroundColor="banality"
-          color="death"
-          width="1/4"
-          padding="12"
-          alignHorizontal="left"
-          alignVertical="top"
-          textTransform="uppercase"
-        >
-          <VStack gap="2">
-            <Heading size="24">Goal</Heading>
-            <Text size="16">{goal} ETH</Text>
-            <Heading size="24">Raised</Heading>
-            <Text size="16">{balance} ETH</Text>
-            <Heading size="24">Minimum</Heading>
-            <Text size="16">{minTribute} ETH</Text>
-            <Heading size="24">Ends</Heading>
-            <Text size="16">{endTime}</Text>
-          </VStack>
-        </Column>
-      </Columns>
+      <Box
+        grow
+        alignHorizontal="center"
+        alignVertical="center"
+        backgroundColor="nipple"
+        padding="32"
+      >
+        <Heading size="64">YEET</Heading>
+        <Heading>{name}</Heading>
+        <Text>{mission}</Text>
+        <Text>
+          Raised {balance} eth of the {goal} eth goal
+        </Text>
+        <Text>
+          Starts {startTime} and ends {endTime}
+        </Text>
+        <Text>Yeet amount: {minTribute} base eth</Text>
+      </Box>
     ),
     intents: [
+      <TextInput placeholder="Amount of ETH" />,
       <Button.Transaction
         target={`/yeet/${yeeterid}/${yeetData.data.yeeter.minTribute}`}
       >
@@ -159,7 +136,7 @@ app.frame('/yeeter/:yeeterid', async c => {
   });
 });
 
-app.frame('/success', c => {
+app.frame("/success", (c) => {
   const { transactionId } = c;
   return c.res({
     image: (
@@ -177,30 +154,30 @@ app.frame('/success', c => {
   });
 });
 
-app.transaction('/yeet/:yeeterid/:mintribute', c => {
-  const yeeterid = c.req.param('yeeterid');
-  const mintribute = c.req.param('mintribute');
+app.transaction("/yeet/:yeeterid/:mintribute", (c) => {
+  const yeeterid = c.req.param("yeeterid");
+  const mintribute = c.req.param("mintribute");
   const shamanAddress = yeeterid as `0x${string}`;
-  const message = 'YEET FROM FRAMES';
+  const message = "YEET FROM FRAMES";
 
   return c.contract({
     abi: [
       {
-        inputs: [{ internalType: 'string', name: 'message', type: 'string' }],
-        name: 'contributeEth',
+        inputs: [{ internalType: "string", name: "message", type: "string" }],
+        name: "contributeEth",
         outputs: [],
-        stateMutability: 'payable',
-        type: 'function',
+        stateMutability: "payable",
+        type: "function",
       },
     ],
-    chainId: 'eip155:8453',
-    functionName: 'contributeEth',
+    chainId: "eip155:8453",
+    functionName: "contributeEth",
     value: BigInt(mintribute),
     args: [message],
     to: shamanAddress,
   });
 });
 
-app.use('/*', serveStatic({ root: './public' }));
+app.use("/*", serveStatic({ root: "./public" }));
 
 devtools(app, { serveStatic });
