@@ -18,20 +18,24 @@ export const app = new Frog({
   ui: { vars },
 });
 
-app.frame("/yeeter/:daoid/:yeeterid", async (c) => {
+app.frame("/yeeter/:yeeterid", async (c) => {
   // const yeeterid = "0x7a023e66b1f607ee9ab3f384198adf668847a4d9";
   // const daoid = "0xa150835a5e25a197659e85a42649b5cea8128bb2";
   const yeeterid = c.req.param("yeeterid");
-  const daoid = c.req.param("daoid");
+  // const daoid = c.req.param("daoid");
 
-  console.log("daoid", daoid);
+  console.log("yeeterid", yeeterid);
 
   const yeetData = await postData(GRAPH_ENDPOINT, {
-    query: `{yeeter(id: "${yeeterid}") {id endTime startTime minTribute multiplier goal balance}}`,
+    query: `{yeeter(id: "${yeeterid}") {id endTime startTime minTribute multiplier goal balance dao { id }}}`,
   });
 
   //todo: handle errors - if not yeeter display erorr so tx can't go forward
   console.log("yeetData", yeetData);
+
+  const daoid = yeetData.data.yeeter.dao.id;
+
+  console.log("daoid", daoid);
 
   const balance = formatEther(yeetData.data.yeeter.balance);
   const endTime = formatShortDateTimeFromSeconds(yeetData.data.yeeter.endTime);
