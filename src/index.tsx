@@ -6,50 +6,102 @@ import { Box, Heading, Text, vars } from "./ui.js";
 import { devtools } from "frog/dev";
 // import { neynar } from 'frog/hubs'
 import { formatEther } from "viem";
-import { formatShortDateTimeFromSeconds, postData } from "./helpers.js";
-import { GRAPH_ENDPOINT } from "./constants.js";
+import {
+  addParsedContent,
+  formatShortDateTimeFromSeconds,
+  postData,
+} from "./helpers.js";
+import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from "./constants.js";
 
 export const app = new Frog({
   assetsPath: "/",
   basePath: "/api",
-  // browserLocation: "",
+  browserLocation: "https://app.yeet.haus/",
   verify: "silent",
   secret: process.env.FROG_SECRET,
   ui: { vars },
 });
 
 app.frame("/yeeter/:yeeterid", async (c) => {
-  // const yeeterid = "0x7a023e66b1f607ee9ab3f384198adf668847a4d9";
-  // const daoid = "0xa150835a5e25a197659e85a42649b5cea8128bb2";
   const yeeterid = c.req.param("yeeterid");
-  // const daoid = c.req.param("daoid");
-
-  console.log("yeeterid", yeeterid);
 
   const yeetData = await postData(GRAPH_ENDPOINT, {
     query: `{yeeter(id: "${yeeterid}") {id endTime startTime minTribute multiplier goal balance dao { id }}}`,
   });
 
-  //todo: handle errors - if not yeeter display erorr so tx can't go forward
-  console.log("yeetData", yeetData);
+  if (!yeetData.data.yeeter) {
+    return c.res({
+      image: (
+        <Box
+          grow
+          alignHorizontal="center"
+          alignVertical="center"
+          backgroundColor="nipple"
+          padding="32"
+        >
+          <Heading size="64">INVALID YEET</Heading>
+        </Box>
+      ),
+    });
+  }
+
+  const now = Date.now() / 1000;
+  const isActive =
+    now > Number(yeetData.data.yeeter.startTime) &&
+    now < Number(yeetData.data.yeeter.endTime);
+
+  if (!isActive) {
+    return c.res({
+      image: (
+        <Box
+          grow
+          alignHorizontal="center"
+          alignVertical="center"
+          backgroundColor="nipple"
+          padding="32"
+        >
+          <Heading size="64">YEET CLOSED</Heading>
+        </Box>
+      ),
+    });
+  }
 
   const daoid = yeetData.data.yeeter.dao.id;
 
-  console.log("daoid", daoid);
+  const metaRes = await postData(DH_GRAPH_ENDPOINT, {
+    query: `{records(where: { dao: "${daoid}", table: "yeetDetails" }) {id content dao { name } }}`,
+  });
 
+  const meta = addParsedContent(metaRes.data.records[0].content);
+
+  console.log("meta", meta);
+
+  if (!metaRes.data.records[0]) {
+    return c.res({
+      image: (
+        <Box
+          grow
+          alignHorizontal="center"
+          alignVertical="center"
+          backgroundColor="nipple"
+          padding="32"
+        >
+          <Heading size="64">INVALID YEET</Heading>
+        </Box>
+      ),
+    });
+  }
+
+  const name = metaRes.data.records[0].dao.name;
+  const mission = meta?.missionStatement;
   const balance = formatEther(yeetData.data.yeeter.balance);
   const endTime = formatShortDateTimeFromSeconds(yeetData.data.yeeter.endTime);
   const startTime = formatShortDateTimeFromSeconds(
     yeetData.data.yeeter.startTime
   );
   const goal = formatEther(yeetData.data.yeeter.goal);
-
-  //todo: pass this to the tx frame to popluate the value
   const minTribute = formatEther(yeetData.data.yeeter.minTribute);
-  // const balance = "0";
 
-  // const { inputText } = c;
-  // const amount = inputText;
   return c.res({
     image: (
       <Box
@@ -60,6 +112,8 @@ app.frame("/yeeter/:yeeterid", async (c) => {
         padding="32"
       >
         <Heading size="64">YEET</Heading>
+        <Heading>{name}</Heading>
+        <Text>{mission}</Text>
         <Text>
           Raised {balance} eth of the {goal} eth goal
         </Text>
