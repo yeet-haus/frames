@@ -4,7 +4,6 @@ import { serveStatic } from "@hono/node-server/serve-static";
 import { Frog, TextInput, Button } from "frog";
 import { Box, Heading, Text, vars } from "./ui.js";
 import { devtools } from "frog/dev";
-// import { neynar } from 'frog/hubs'
 import { formatEther } from "viem";
 import {
   addParsedContent,
@@ -20,6 +19,10 @@ export const app = new Frog({
   verify: "silent",
   secret: process.env.FROG_SECRET,
   ui: { vars },
+  initialState: {
+    minTribute: "0",
+    shamanAddress: "",
+  },
 });
 
 app.frame("/yeeter/:yeeterid", async (c) => {
@@ -74,8 +77,6 @@ app.frame("/yeeter/:yeeterid", async (c) => {
 
   const meta = addParsedContent(metaRes.data.records[0].content);
 
-  console.log("meta", meta);
-
   if (!metaRes.data.records[0]) {
     return c.res({
       image: (
@@ -125,14 +126,21 @@ app.frame("/yeeter/:yeeterid", async (c) => {
     ),
     intents: [
       <TextInput placeholder="Amount of ETH" />,
-      <Button.Transaction target={`yeet/${yeeterid}`}>YEET</Button.Transaction>,
+      <Button.Transaction
+        target={`/yeet/${yeeterid}/${yeetData.data.yeeter.minTribute}`}
+      >
+        YEET
+      </Button.Transaction>,
     ],
   });
 });
 
-app.transaction("/yeet/:yeeterid", (c) => {
-  // Contract transaction response.
+app.transaction("/yeet/:yeeterid/:mintribute", (c) => {
   const yeeterid = c.req.param("yeeterid");
+  const mintribute = c.req.param("mintribute");
+  const shamanAddress = yeeterid as `0x${string}`;
+  const message = "YEET FROM FRAMES";
+
   return c.contract({
     abi: [
       {
@@ -144,11 +152,10 @@ app.transaction("/yeet/:yeeterid", (c) => {
       },
     ],
     chainId: "eip155:8453",
-    // chainId: 'eip155:11155111',
     functionName: "contributeEth",
-    value: 10000000000000000n,
-    args: ["1st Yeet from a frame"],
-    to: yeeterid as `0x${string}`,
+    value: BigInt(mintribute),
+    args: [message],
+    to: shamanAddress,
   });
 });
 
