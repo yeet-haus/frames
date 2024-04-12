@@ -104,6 +104,7 @@ app.frame("/yeeter/:yeeterid", async (c) => {
   const minTribute = formatEther(yeetData.data.yeeter.minTribute);
 
   return c.res({
+    action: "/success",
     image: (
       <Box
         grow
@@ -132,6 +133,24 @@ app.frame("/yeeter/:yeeterid", async (c) => {
         YEET
       </Button.Transaction>,
     ],
+  });
+});
+
+app.frame("/success", (c) => {
+  const { transactionId } = c;
+  return c.res({
+    image: (
+      <Box
+        grow
+        alignHorizontal="center"
+        alignVertical="center"
+        backgroundColor="nipple"
+        padding="32"
+      >
+        <Heading size="64">YEET</Heading>
+        <Text>{transactionId}</Text>
+      </Box>
+    ),
   });
 });
 
