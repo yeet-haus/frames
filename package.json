@@ -7,10 +7,14 @@
   },
   "dependencies": {
     "@hono/node-server": "latest",
+    "date-fns": "^3.6.0",
+    "dotenv": "^16.4.5",
     "frog": "latest",
-    "hono": "^4.1.7"
+    "hono": "^4.1.7",
+    "viem": "^2.9.9"
   },
   "devDependencies": {
+    "@types/node": "^20.12.4",
     "typescript": "latest"
   }
 }
