@@ -104,7 +104,7 @@ app.frame('/yeeter/:yeeterid', async c => {
   const minTribute = formatEther(yeetData.data.yeeter.minTribute);
 
   return c.res({
-    action: '/success',
+    action: `/success/${daoid}`,
     image: (
       <Columns grow>
         <Column
@@ -159,21 +159,16 @@ app.frame('/yeeter/:yeeterid', async c => {
   });
 });
 
-app.frame('/success', c => {
-  const { transactionId } = c;
+// app.frame('/success', c => {
+app.frame(`/success/:daoid`, c => {
+  const daoid = c.req.param('daoid');
   return c.res({
-    image: (
-      <Box
-        grow
-        alignHorizontal="center"
-        alignVertical="center"
-        backgroundColor="nipple"
-        padding="32"
-      >
-        <Heading size="64">YEET</Heading>
-        <Text>{transactionId}</Text>
-      </Box>
-    ),
+    image: '/images/success.png',
+    intents: [
+      <Button.Link href={`https://app.yeet.haus/#/molochV3/0x2105/${daoid}`}>
+        View Project
+      </Button.Link>,
+    ],
   });
 });
 
