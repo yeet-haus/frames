@@ -22,3 +22,15 @@ export const formatShortDateTimeFromSeconds = (
 
   return format(new Date(Number(seconds) * 1000), "MMMM do, p");
 };
+
+export const addParsedContent = (
+  content: string
+): { missionStatement: string; projectDetails: string } | undefined => {
+  try {
+    const obj = JSON.parse(content);
+    return obj;
+  } catch (e) {
+    console.log("err", e);
+    return;
+  }
+};
