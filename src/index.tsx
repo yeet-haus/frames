@@ -120,11 +120,6 @@ app.frame('/yeeter/:yeeterid', async c => {
             <Heading size="32">{name}</Heading>
             <Text size="24">Mission</Text>
             <Text size="16">{mission}</Text>
-            <Text size="24">WTF</Text>
-            <Text size="16">
-              YEET {minTribute} ETH supporting {name}. The ETH you contribute
-              gives you $nvTREE tokens in our project's DAO.
-            </Text>
           </VStack>
         </Column>
         <Column
