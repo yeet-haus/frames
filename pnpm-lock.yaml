@@ -13,7 +13,7 @@ dependencies:
     version: 16.4.5
   frog:
     specifier: latest
-    version: 0.8.0(@types/node@14.18.33)(hono@4.2.4)(typescript@5.4.5)
+    version: 0.8.0(@types/node@20.12.7)(hono@4.2.4)(typescript@5.4.5)
   hono:
     specifier: ^4.2.4
     version: 4.2.4
@@ -22,6 +22,9 @@ dependencies:
     version: 2.9.19(typescript@5.4.5)
 
 devDependencies:
+  '@types/node':
+    specifier: ^20.12.7
+    version: 20.12.7
   tsx:
     specifier: ^4.7.2
     version: 4.7.2
@@ -801,6 +804,12 @@ packages:
 
   /@types/node@14.18.33:
     resolution: {integrity: sha512-qelS/Ra6sacc4loe/3MSjXNL1dNQ/GjxNHVzuChwMfmk7HuycRLVQN2qNY3XahK+fZc5E2szqQSKUyAF0E+2bg==}
+    dev: true
+
+  /@types/node@20.12.7:
+    resolution: {integrity: sha512-wq0cICSkRLVaf3UGLMGItu/PtdY7oaXaI/RVU+xliKVOtRna3PRY57ZDfztpDL0n11vfymMUnXv8QwYCO7L1wg==}
+    dependencies:
+      undici-types: 5.26.5
 
   /@vercel/build-utils@7.3.0:
     resolution: {integrity: sha512-RJwqrGYSk75auHZqWmlSL+a5JsWv+4SF1AxNQJ+KpF3XWZ/8yThkN/jHBfNxMmW6VvNczSVtMaXI0/2Sess6Eg==}
@@ -1696,7 +1705,7 @@ packages:
     dependencies:
       to-regex-range: 5.0.1
 
-  /frog@0.8.0(@types/node@14.18.33)(hono@4.2.4)(typescript@5.4.5):
+  /frog@0.8.0(@types/node@20.12.7)(hono@4.2.4)(typescript@5.4.5):
     resolution: {integrity: sha512-rcPt8d94e3SKIS5za4UFT1NvrgS3jPFp9nK1N1mZyg1v7VWly9wZdH0PMV0Lv/+7FRatKI2G+gjR6CG4BFsxcw==}
     hasBin: true
     peerDependencies:
@@ -1725,7 +1734,7 @@ packages:
       typescript: 5.4.5
       valibot: 0.30.0
       viem: 2.9.19(typescript@5.4.5)
-      vite: 5.2.7(@types/node@14.18.33)
+      vite: 5.2.7(@types/node@20.12.7)
     transitivePeerDependencies:
       - '@types/node'
       - bufferutil
@@ -2710,6 +2719,9 @@ packages:
     resolution: {integrity: sha512-R8375j0qwXyIu/7R0tjdF06/sElHqbmdmWC9M2qQHpEVbvE4I5+38KJI7LUUmQMp7NVq4tKHiBMkT0NFM453Ig==}
     dev: true
 
+  /undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+
   /undici@5.26.5:
     resolution: {integrity: sha512-cSb4bPFd5qgR7qr2jYAi0hlX9n5YKK2ONKkLFkxl+v/9BvC0sOpZjBHDBSXc5lWAf5ty9oZdRXytBIHzgUcerw==}
     engines: {node: '>=14.0'}
@@ -2809,7 +2821,7 @@ packages:
       - zod
     dev: false
 
-  /vite@5.2.7(@types/node@14.18.33):
+  /vite@5.2.7(@types/node@20.12.7):
     resolution: {integrity: sha512-k14PWOKLI6pMaSzAuGtT+Cf0YmIx12z9YGon39onaJNy8DLBfBJrzg9FQEmkAM5lpHBZs9wksWAsyF/HkpEwJA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -2837,7 +2849,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 14.18.33
+      '@types/node': 20.12.7
       esbuild: 0.20.2
       postcss: 8.4.38
       rollup: 4.13.2
