@@ -22,7 +22,7 @@ import { handle } from 'frog/vercel';
 export const app = new Frog({
   assetsPath: '/',
   basePath: '/api',
-  hub: neynar({ apiKey: `process.env.NEYNAR_KEY` }),
+  hub: neynar({ apiKey: process.env.NEYNAR_KEY || '' }),
   browserLocation: 'https://app.yeet.haus/',
   verify: true,
   secret: process.env.FROG_SECRET,
