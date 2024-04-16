@@ -1,14 +1,14 @@
-import { format } from "date-fns";
+import { format } from 'date-fns';
 
-export const postData = async (url = "", data = {}) => {
+export const postData = async (url = '', data = {}) => {
   try {
     const response = await fetch(url, {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(data),
     });
     return response.json();
   } catch (e) {
-    console.log("error", e);
+    console.log('error', e);
     return e;
   }
 };
@@ -20,7 +20,7 @@ export const formatShortDateTimeFromSeconds = (
     return;
   }
 
-  return format(new Date(Number(seconds) * 1000), "MMMM do, p");
+  return format(new Date(Number(seconds) * 1000), 'MMMM do');
 };
 
 export const addParsedContent = (
@@ -30,7 +30,7 @@ export const addParsedContent = (
     const obj = JSON.parse(content);
     return obj;
   } catch (e) {
-    console.log("err", e);
+    console.log('err', e);
     return;
   }
 };
