@@ -1,20 +1,22 @@
 {
-  "name": "frames",
+  "name": "fresh-frames",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "frog dev"
+    "build": "frog vercel-build",
+    "dev": "frog dev",
+    "deploy": "vercel"
   },
   "dependencies": {
-    "@hono/node-server": "latest",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "frog": "latest",
-    "hono": "^4.1.7",
-    "viem": "^2.9.9"
+    "hono": "^4.2.4",
+    "viem": "^2.9.19"
   },
   "devDependencies": {
-    "@types/node": "^20.12.4",
-    "typescript": "latest"
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5",
+    "vercel": "^32.7.2"
   }
 }

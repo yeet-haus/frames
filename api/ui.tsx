@@ -19,6 +19,7 @@ export const {
     jaundice: '#FEDB1D',
     banality: '#F9E1A3',
     death: '#000000',
+    angel: '#FFFFFF',
   },
   fonts: {
     default: [
@@ -26,6 +27,11 @@ export const {
         name: 'Poppins',
         source: 'google',
         weight: 900,
+      },
+      {
+        name: 'Poppins',
+        source: 'google',
+        weight: 400,
       },
     ],
   },
