@@ -4,6 +4,7 @@ import { serveStatic } from 'frog/serve-static';
 import { Frog, Button } from 'frog';
 import { Column, Columns, Row, Rows, Heading, Text, vars } from './ui.js';
 import { devtools } from 'frog/dev';
+import { neynar } from 'frog/hubs';
 import { formatEther } from 'viem';
 import {
   addParsedContent,
@@ -21,10 +22,9 @@ import { handle } from 'frog/vercel';
 export const app = new Frog({
   assetsPath: '/',
   basePath: '/api',
-  // Supply a Hub to enable frame verification.
-  // hub: neynar({ apiKey: 'NEYNAR_FROG_FM' })
+  hub: neynar({ apiKey: `process.env.NEYNAR_KEY` }),
   browserLocation: 'https://app.yeet.haus/',
-  verify: 'silent',
+  verify: true,
   secret: process.env.FROG_SECRET,
   ui: { vars },
   initialState: {
