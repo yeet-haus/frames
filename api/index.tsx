@@ -14,9 +14,10 @@ import {
 import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from '../utils/constants.js';
 import { handle } from 'frog/vercel';
 
-export const config = {
-  runtime: 'edge',
-};
+// Uncomment to use Edge Runtime.
+// export const config = {
+//   runtime: 'edge',
+// }
 
 export const app = new Frog({
   assetsPath: '/',
