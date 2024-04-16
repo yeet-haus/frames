@@ -16,7 +16,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
-    "types": ["frog/client", "node"]
+    "types": ["frog/client"]
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.mtsx"]
 }
