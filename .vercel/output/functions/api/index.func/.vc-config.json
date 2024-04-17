@@ -1,8 +1,5 @@
 {
-  "runtime": "nodejs18",
-  "handler": "serve.js",
-  "maxDuration": 3,
-  "launcherType": "Nodejs",
-  "shouldAddHelpers": true,
-  "shouldAddSourcemapSupport": true
+  "runtime": "edge",
+  "entrypoint": "index.js",
+  "envVarsInUse": ["GRAPH_KEY", "NEYNAR_KEY"]
 }
