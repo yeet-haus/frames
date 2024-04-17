@@ -1,5 +1,5 @@
 {
-  "runtime": "nodejs16.x",
+  "runtime": "nodejs18",
   "handler": "serve.js",
   "maxDuration": 3,
   "launcherType": "Nodejs",
