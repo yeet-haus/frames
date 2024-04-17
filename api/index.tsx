@@ -20,6 +20,7 @@ import { handle } from 'frog/vercel';
 // }
 
 export const app = new Frog({
+  origin: 'https://frames.yeet.haus/',
   assetsPath: '/',
   basePath: '/api',
   hub: neynar({ apiKey: process.env.NEYNAR_KEY || '' }),
