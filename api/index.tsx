@@ -25,7 +25,7 @@ export const app = new Frog({
   basePath: '/api',
   hub: neynar({ apiKey: process.env.NEYNAR_KEY || '' }),
   browserLocation: 'https://app.yeet.haus/',
-  verify: true,
+  verify: 'silent',
   secret: process.env.FROG_SECRET,
   ui: { vars },
   initialState: {
