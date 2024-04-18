@@ -14,9 +14,9 @@ import {
 import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from '../utils/constants.js';
 import { handle } from 'frog/vercel';
 
-export const config = {
-  runtime: 'edge',
-};
+// export const config = {
+//   runtime: 'edge',
+// };
 
 export const app = new Frog({
   origin: 'https://frames.yeet.haus/',
@@ -679,6 +679,8 @@ app.transaction('/yeet/:yeeterid/:mintribute', c => {
 const isEdgeFunction = typeof EdgeFunction !== 'undefined';
 const isProduction = isEdgeFunction || import.meta.env?.MODE !== 'development';
 devtools(app, isProduction ? { assetsPath: '/.frog' } : { serveStatic });
+
+console.log(process.version);
 
 export const GET = handle(app);
 export const POST = handle(app);

@@ -1,5 +1,5 @@
 {
-  "runtime": "edge",
+  "runtime": "nodejs",
   "entrypoint": "index.js",
   "envVarsInUse": ["GRAPH_KEY", "NEYNAR_KEY"]
 }
