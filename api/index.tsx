@@ -1,18 +1,18 @@
-import 'dotenv/config';
-
-import { serveStatic } from 'frog/serve-static';
 import { Frog, Button } from 'frog';
 import { Column, Columns, Row, Rows, Heading, Text, vars } from './ui.js';
 import { devtools } from 'frog/dev';
+import { serveStatic } from 'frog/serve-static';
 import { neynar } from 'frog/hubs';
+import { handle } from 'frog/vercel';
+
 import { formatEther } from 'viem';
+
 import {
   addParsedContent,
   formatShortDateTimeFromSeconds,
   postData,
 } from '../utils/helpers.js';
 import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from '../utils/constants.js';
-import { handle } from 'frog/vercel';
 
 // Uncomment to use Edge Runtime.
 // export const config = {
@@ -20,12 +20,12 @@ import { handle } from 'frog/vercel';
 // }
 
 export const app = new Frog({
+  origin: 'https://frames.yeet.haus/',
   assetsPath: '/',
   basePath: '/api',
   hub: neynar({ apiKey: process.env.NEYNAR_KEY || '' }),
   browserLocation: 'https://app.yeet.haus/',
-  verify: true,
-  secret: process.env.FROG_SECRET,
+  verify: 'silent',
   ui: { vars },
   initialState: {
     minTribute: '0',
@@ -504,9 +504,6 @@ app.frame('/yeeter/:yeeterid', async c => {
   const mission = meta?.missionStatement;
   const balance = formatEther(yeetData.data.yeeter.balance);
   const endTime = formatShortDateTimeFromSeconds(yeetData.data.yeeter.endTime);
-  // const startTime = formatShortDateTimeFromSeconds(
-  //   yeetData.data.yeeter.startTime
-  // );
   const goal = formatEther(yeetData.data.yeeter.goal);
   const minTribute = formatEther(yeetData.data.yeeter.minTribute);
 
@@ -638,7 +635,6 @@ app.frame('/yeeter/:yeeterid', async c => {
   });
 });
 
-// app.frame('/success', c => {
 app.frame(`/success/:daoid`, c => {
   const daoid = c.req.param('daoid');
   return c.res({
