@@ -5,7 +5,7 @@ import { serveStatic } from "frog/serve-static";
 import { neynar } from "frog/hubs";
 import { handle } from "frog/vercel";
 
-import { formatEther } from "viem";
+import { formatEther, getAddress } from "viem";
 
 import {
   addParsedContent,
@@ -20,7 +20,7 @@ import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from "../utils/constants.js";
 // }
 
 export const app = new Frog({
-  origin: "https://frames.yeet.haus/",
+  origin: "https://frames.yeet.haus",
   assetsPath: "/",
   basePath: "/api",
   hub: neynar({ apiKey: process.env.NEYNAR_KEY || "" }),
@@ -652,7 +652,7 @@ app.frame(`/success/:daoid`, (c) => {
 app.transaction("/yeet/:yeeterid/:mintribute", (c) => {
   const yeeterid = c.req.param("yeeterid");
   const mintribute = c.req.param("mintribute");
-  const shamanAddress = yeeterid as `0x${string}`;
+  const shamanAddress = getAddress(yeeterid);
   const message = "YEET FROM FRAMES";
 
   return c.contract({
