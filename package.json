@@ -11,8 +11,8 @@
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "frog": "latest",
-    "hono": "^4.2.4",
-    "viem": "^2.9.19"
+    "hono": "^4.2.6",
+    "viem": "^2.9.25"
   },
   "devDependencies": {
     "@types/node": "^20.12.7",
