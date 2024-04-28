@@ -1,18 +1,18 @@
-import { Frog, Button } from "frog";
-import { Column, Columns, Row, Rows, Heading, Text, vars } from "./ui.js";
-import { devtools } from "frog/dev";
-import { serveStatic } from "frog/serve-static";
-import { neynar } from "frog/hubs";
-import { handle } from "frog/vercel";
+import { Frog, Button } from 'frog';
+import { Column, Columns, Row, Rows, Heading, Text, vars } from './ui.js';
+import { devtools } from 'frog/dev';
+import { serveStatic } from 'frog/serve-static';
+import { neynar } from 'frog/hubs';
+import { handle } from 'frog/vercel';
 
-import { formatEther, getAddress } from "viem";
+import { formatEther, getAddress } from 'viem';
 
 import {
   addParsedContent,
   formatShortDateTimeFromSeconds,
   postData,
-} from "../utils/helpers.js";
-import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from "../utils/constants.js";
+} from '../utils/helpers.js';
+import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from '../utils/constants.js';
 
 // Uncomment to use Edge Runtime.
 // export const config = {
@@ -20,21 +20,24 @@ import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from "../utils/constants.js";
 // }
 
 export const app = new Frog({
-  origin: "https://frames.yeet.haus",
-  assetsPath: "/",
-  basePath: "/api",
-  hub: neynar({ apiKey: process.env.NEYNAR_KEY || "" }),
-  browserLocation: "https://app.yeet.haus/",
-  verify: "silent",
+  origin: 'https://frames.yeet.haus',
+  headers: {
+    'cache-control': 'max-age=0',
+  },
+  assetsPath: '/',
+  basePath: '/api',
+  hub: neynar({ apiKey: process.env.NEYNAR_KEY || '' }),
+  browserLocation: 'https://app.yeet.haus/',
+  verify: 'silent',
   ui: { vars },
   initialState: {
-    minTribute: "0",
-    shamanAddress: "",
+    minTribute: '0',
+    shamanAddress: '',
   },
 });
 
-app.frame("/yeeter/:yeeterid", async (c) => {
-  const yeeterid = c.req.param("yeeterid");
+app.frame('/yeeter/:yeeterid', async c => {
+  const yeeterid = c.req.param('yeeterid');
 
   const yeetData = await postData(GRAPH_ENDPOINT, {
     query: `{yeeter(id: "${yeeterid.toLowerCase()}") {id endTime startTime minTribute multiplier goal balance dao { id }}}`,
@@ -48,12 +51,12 @@ app.frame("/yeeter/:yeeterid", async (c) => {
             backgroundColor="death"
             color="nipple"
             textTransform="uppercase"
-            borderTopColor={"angel"}
-            borderTopWidth={"4"}
-            borderRightColor={"angel"}
-            borderRightWidth={"4"}
-            borderLeftColor={"angel"}
-            borderLeftWidth={"4"}
+            borderTopColor={'angel'}
+            borderTopWidth={'4'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="1/5"
           >
             <Columns grow>
@@ -103,14 +106,14 @@ app.frame("/yeeter/:yeeterid", async (c) => {
           </Row>
           <Row
             backgroundColor="nipple"
-            borderTopColor={"angel"}
-            borderTopWidth={"2"}
-            borderRightColor={"angel"}
-            borderRightWidth={"4"}
-            borderBottomColor={"angel"}
-            borderBottomWidth={"2"}
-            borderLeftColor={"angel"}
-            borderLeftWidth={"4"}
+            borderTopColor={'angel'}
+            borderTopWidth={'2'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'2'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="3/5"
           >
             <Columns grow>
@@ -133,12 +136,12 @@ app.frame("/yeeter/:yeeterid", async (c) => {
             backgroundColor="death"
             color="angel"
             textTransform="uppercase"
-            borderRightColor={"angel"}
-            borderRightWidth={"4"}
-            borderBottomColor={"angel"}
-            borderBottomWidth={"4"}
-            borderLeftColor={"angel"}
-            borderLeftWidth={"4"}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="1/5"
           >
             <Columns grow>
@@ -202,12 +205,12 @@ app.frame("/yeeter/:yeeterid", async (c) => {
             backgroundColor="death"
             color="nipple"
             textTransform="uppercase"
-            borderTopColor={"angel"}
-            borderTopWidth={"4"}
-            borderRightColor={"angel"}
-            borderRightWidth={"4"}
-            borderLeftColor={"angel"}
-            borderLeftWidth={"4"}
+            borderTopColor={'angel'}
+            borderTopWidth={'4'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="1/5"
           >
             <Columns grow>
@@ -257,14 +260,14 @@ app.frame("/yeeter/:yeeterid", async (c) => {
           </Row>
           <Row
             backgroundColor="nipple"
-            borderTopColor={"angel"}
-            borderTopWidth={"2"}
-            borderRightColor={"angel"}
-            borderRightWidth={"4"}
-            borderBottomColor={"angel"}
-            borderBottomWidth={"2"}
-            borderLeftColor={"angel"}
-            borderLeftWidth={"4"}
+            borderTopColor={'angel'}
+            borderTopWidth={'2'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'2'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="3/5"
           >
             <Columns grow>
@@ -287,12 +290,12 @@ app.frame("/yeeter/:yeeterid", async (c) => {
             backgroundColor="death"
             color="angel"
             textTransform="uppercase"
-            borderRightColor={"angel"}
-            borderRightWidth={"4"}
-            borderBottomColor={"angel"}
-            borderBottomWidth={"4"}
-            borderLeftColor={"angel"}
-            borderLeftWidth={"4"}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="1/5"
           >
             <Columns grow>
@@ -359,12 +362,12 @@ app.frame("/yeeter/:yeeterid", async (c) => {
             backgroundColor="death"
             color="nipple"
             textTransform="uppercase"
-            borderTopColor={"angel"}
-            borderTopWidth={"4"}
-            borderRightColor={"angel"}
-            borderRightWidth={"4"}
-            borderLeftColor={"angel"}
-            borderLeftWidth={"4"}
+            borderTopColor={'angel'}
+            borderTopWidth={'4'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="1/5"
           >
             <Columns grow>
@@ -414,14 +417,14 @@ app.frame("/yeeter/:yeeterid", async (c) => {
           </Row>
           <Row
             backgroundColor="nipple"
-            borderTopColor={"angel"}
-            borderTopWidth={"2"}
-            borderRightColor={"angel"}
-            borderRightWidth={"4"}
-            borderBottomColor={"angel"}
-            borderBottomWidth={"2"}
-            borderLeftColor={"angel"}
-            borderLeftWidth={"4"}
+            borderTopColor={'angel'}
+            borderTopWidth={'2'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'2'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="3/5"
           >
             <Columns grow>
@@ -444,12 +447,12 @@ app.frame("/yeeter/:yeeterid", async (c) => {
             backgroundColor="death"
             color="angel"
             textTransform="uppercase"
-            borderRightColor={"angel"}
-            borderRightWidth={"4"}
-            borderBottomColor={"angel"}
-            borderBottomWidth={"4"}
-            borderLeftColor={"angel"}
-            borderLeftWidth={"4"}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="1/5"
           >
             <Columns grow>
@@ -515,12 +518,12 @@ app.frame("/yeeter/:yeeterid", async (c) => {
           backgroundColor="death"
           color="nipple"
           textTransform="uppercase"
-          borderTopColor={"angel"}
-          borderTopWidth={"4"}
-          borderRightColor={"angel"}
-          borderRightWidth={"4"}
-          borderLeftColor={"angel"}
-          borderLeftWidth={"4"}
+          borderTopColor={'angel'}
+          borderTopWidth={'4'}
+          borderRightColor={'angel'}
+          borderRightWidth={'4'}
+          borderLeftColor={'angel'}
+          borderLeftWidth={'4'}
           height="1/5"
         >
           <Columns grow>
@@ -546,14 +549,14 @@ app.frame("/yeeter/:yeeterid", async (c) => {
         </Row>
         <Row
           backgroundColor="nipple"
-          borderTopColor={"angel"}
-          borderTopWidth={"2"}
-          borderRightColor={"angel"}
-          borderRightWidth={"4"}
-          borderBottomColor={"angel"}
-          borderBottomWidth={"2"}
-          borderLeftColor={"angel"}
-          borderLeftWidth={"4"}
+          borderTopColor={'angel'}
+          borderTopWidth={'2'}
+          borderRightColor={'angel'}
+          borderRightWidth={'4'}
+          borderBottomColor={'angel'}
+          borderBottomWidth={'2'}
+          borderLeftColor={'angel'}
+          borderLeftWidth={'4'}
           height="3/5"
         >
           <Columns grow>
@@ -588,12 +591,12 @@ app.frame("/yeeter/:yeeterid", async (c) => {
           backgroundColor="death"
           color="angel"
           textTransform="uppercase"
-          borderRightColor={"angel"}
-          borderRightWidth={"4"}
-          borderBottomColor={"angel"}
-          borderBottomWidth={"4"}
-          borderLeftColor={"angel"}
-          borderLeftWidth={"4"}
+          borderRightColor={'angel'}
+          borderRightWidth={'4'}
+          borderBottomColor={'angel'}
+          borderBottomWidth={'4'}
+          borderLeftColor={'angel'}
+          borderLeftWidth={'4'}
           height="1/5"
         >
           <Columns grow>
@@ -635,10 +638,10 @@ app.frame("/yeeter/:yeeterid", async (c) => {
   });
 });
 
-app.frame(`/success/:daoid`, (c) => {
-  const daoid = c.req.param("daoid");
+app.frame(`/success/:daoid`, c => {
+  const daoid = c.req.param('daoid');
   return c.res({
-    image: "/images/success.png",
+    image: '/images/success.png',
     intents: [
       <Button.Link
         href={`https://app.yeet.haus/#/molochV3/0x2105/${daoid.toLowerCase()}`}
@@ -649,24 +652,24 @@ app.frame(`/success/:daoid`, (c) => {
   });
 });
 
-app.transaction("/yeet/:yeeterid/:mintribute", (c) => {
-  const yeeterid = c.req.param("yeeterid");
-  const mintribute = c.req.param("mintribute");
+app.transaction('/yeet/:yeeterid/:mintribute', c => {
+  const yeeterid = c.req.param('yeeterid');
+  const mintribute = c.req.param('mintribute');
   const shamanAddress = getAddress(yeeterid);
-  const message = "YEET FROM FRAMES";
+  const message = 'YEET FROM FRAMES';
 
   return c.contract({
     abi: [
       {
-        inputs: [{ internalType: "string", name: "message", type: "string" }],
-        name: "contributeEth",
+        inputs: [{ internalType: 'string', name: 'message', type: 'string' }],
+        name: 'contributeEth',
         outputs: [],
-        stateMutability: "payable",
-        type: "function",
+        stateMutability: 'payable',
+        type: 'function',
       },
     ],
-    chainId: "eip155:8453",
-    functionName: "contributeEth",
+    chainId: 'eip155:8453',
+    functionName: 'contributeEth',
     value: BigInt(mintribute),
     args: [message],
     to: shamanAddress,
@@ -674,9 +677,9 @@ app.transaction("/yeet/:yeeterid/:mintribute", (c) => {
 });
 
 // @ts-ignore
-const isEdgeFunction = typeof EdgeFunction !== "undefined";
-const isProduction = isEdgeFunction || import.meta.env?.MODE !== "development";
-devtools(app, isProduction ? { assetsPath: "/.frog" } : { serveStatic });
+const isEdgeFunction = typeof EdgeFunction !== 'undefined';
+const isProduction = isEdgeFunction || import.meta.env?.MODE !== 'development';
+devtools(app, isProduction ? { assetsPath: '/.frog' } : { serveStatic });
 
 export const GET = handle(app);
 export const POST = handle(app);
