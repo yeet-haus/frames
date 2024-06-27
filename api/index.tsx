@@ -348,9 +348,13 @@ app.frame("/yeeter/:yeeterid", async (c) => {
 
   const daoid = yeetData.data.yeeter.dao.id;
 
+  console.log("daoid", daoid);
+
   const metaRes = await postData(DH_GRAPH_ENDPOINT, {
-    query: `{records(where: { dao: "${daoid.toLowerCase()}", table: "yeetDetails" }, orderBy: createdAt, orderDirection: desc) {id content dao { name } }}`,
+    query: `{records(where: { dao: "${daoid.toLowerCase()}", table: "daoProfile" }, orderBy: createdAt, orderDirection: desc) {id content dao { name } }}`,
   });
+
+  console.log("metaRes", metaRes);
 
   const meta = addParsedContent(metaRes.data.records[0].content);
 
