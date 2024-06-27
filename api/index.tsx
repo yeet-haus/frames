@@ -13,6 +13,7 @@ import {
   postData,
 } from "../utils/helpers.js";
 import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from "../utils/constants.js";
+import { YeetHeader } from "../components/YeetHeader.js";
 
 // Uncomment to use Edge Runtime.
 // export const config = {
@@ -59,50 +60,7 @@ app.frame("/yeeter/:yeeterid", async (c) => {
             borderLeftWidth={"4"}
             height="1/5"
           >
-            <Columns grow>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-            </Columns>
+            <YeetHeader />
           </Row>
           <Row
             backgroundColor="nipple"
@@ -213,50 +171,7 @@ app.frame("/yeeter/:yeeterid", async (c) => {
             borderLeftWidth={"4"}
             height="1/5"
           >
-            <Columns grow>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-            </Columns>
+            <YeetHeader />
           </Row>
           <Row
             backgroundColor="nipple"
@@ -374,50 +289,7 @@ app.frame("/yeeter/:yeeterid", async (c) => {
             borderLeftWidth={"4"}
             height="1/5"
           >
-            <Columns grow>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-            </Columns>
+            <YeetHeader />
           </Row>
           <Row
             backgroundColor="nipple"
