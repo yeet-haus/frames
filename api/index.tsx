@@ -38,10 +38,14 @@ app.frame('/yeeter/:yeeterid', async c => {
   const yeeterid = c.req.param('yeeterid');
 
   const yeetData = await postData(GRAPH_ENDPOINT, {
-    query: `{yeeter(id: "${yeeterid.toLowerCase()}") {id endTime startTime minTribute multiplier goal balance dao { id }}}`,
+    query: `{yeeter(id: "${yeeterid.toLowerCase()}") {id endTime startTime minTribute multiplier goal dao { id shareTokenSymbol  }}}`,
   });
 
+  console.log(GRAPH_ENDPOINT);
+  console.log(yeetData);
+
   // Added this to fix an error...it might not be right
+  // if (!yeetData) {
   if (!yeetData || !yeetData.data || !yeetData.data.yeeter) {
     return c.res({
       image: (
@@ -115,7 +119,7 @@ app.frame('/yeeter/:yeeterid', async c => {
         <Rows grow>
           <Row
             backgroundColor="black"
-            color="teal"
+            color="blue"
             textTransform="uppercase"
             borderTopColor={'white'}
             borderTopWidth={'4'}
@@ -123,21 +127,17 @@ app.frame('/yeeter/:yeeterid', async c => {
             borderRightWidth={'4'}
             borderLeftColor={'white'}
             borderLeftWidth={'4'}
-            height="1/5"
+            height="2/5"
           >
-            <YeetHeader />
+            <YeetTopper />
           </Row>
           <Row
-            backgroundColor="teal"
-            borderTopColor={'white'}
-            borderTopWidth={'2'}
+            backgroundColor="black"
             borderRightColor={'white'}
             borderRightWidth={'4'}
-            borderBottomColor={'white'}
-            borderBottomWidth={'2'}
             borderLeftColor={'white'}
             borderLeftWidth={'4'}
-            height="3/5"
+            height="2/5"
           >
             <Columns grow>
               <Column
@@ -146,18 +146,19 @@ app.frame('/yeeter/:yeeterid', async c => {
                 textAlign="center"
                 textTransform="uppercase"
                 alignHorizontal="center"
-                alignVertical="center"
                 paddingRight="12"
                 paddingLeft="12"
                 width="1/1"
               >
-                <Heading wrap="balance">Yeeter Not Active</Heading>
+                <Heading size="64" wrap="balance">
+                  Not Ready to Bang
+                </Heading>
               </Column>
             </Columns>
           </Row>
           <Row
             backgroundColor="black"
-            color="white"
+            color="teal"
             textTransform="uppercase"
             borderRightColor={'white'}
             borderRightWidth={'4'}
@@ -167,48 +168,7 @@ app.frame('/yeeter/:yeeterid', async c => {
             borderLeftWidth={'4'}
             height="1/5"
           >
-            <Columns grow>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Goal</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Raised</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Ends</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Tribute</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-            </Columns>
+            <YeetHeader />
           </Row>
         </Rows>
       ),
@@ -335,11 +295,12 @@ app.frame('/yeeter/:yeeterid', async c => {
 
   const name = metaRes.data.records[0].dao.name;
   const mission = meta?.missionStatement;
-  const balance = formatEther(yeetData.data.yeeter.balance);
   const endTime = formatShortDateTimeFromSeconds(yeetData.data.yeeter.endTime);
   const goal = formatEther(yeetData.data.yeeter.goal);
   const minTribute = formatEther(yeetData.data.yeeter.minTribute);
+  const shareTokenSymbol = formatEther(yeetData.data.yeeter.shareTokenSymbol);
 
+  // query: `{yeeter(id: "${yeeterid.toLowerCase()}") {id endTime startTime minTribute multiplier goal dao { id shareTokenSymbol  }}}`,
   return c.res({
     action: `/success/${daoid}`,
     image: (
@@ -439,7 +400,7 @@ app.frame('/yeeter/:yeeterid', async c => {
             <Column alignHorizontal="center" alignVertical="center" width="1/4">
               <Heading size="18">Raised</Heading>
               <Text size="18" weight="400">
-                {balance} ETH
+                {shareTokenSymbol} $
               </Text>
             </Column>
             <Column alignHorizontal="center" alignVertical="center" width="1/4">
