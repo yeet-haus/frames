@@ -318,7 +318,7 @@ app.frame('/yeeter/:yeeterid', async c => {
               {name} pre-sale
             </Heading>
             <Text size="32" color="white" align="center" wrap="balance">
-              Deposit {minTribute} and receive 1000 ${shareTokenSymbol}
+              Contribute {minTribute} ETH and receive 1000 ${shareTokenSymbol}
             </Text>
           </Box>
         </Row>
