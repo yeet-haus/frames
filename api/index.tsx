@@ -193,7 +193,7 @@ app.frame('/yeeter/:yeeterid', async c => {
         <Rows grow>
           <Row
             backgroundColor="black"
-            color="teal"
+            color="blue"
             textTransform="uppercase"
             borderTopColor={'white'}
             borderTopWidth={'4'}
@@ -201,21 +201,17 @@ app.frame('/yeeter/:yeeterid', async c => {
             borderRightWidth={'4'}
             borderLeftColor={'white'}
             borderLeftWidth={'4'}
-            height="1/5"
+            height="2/5"
           >
-            <YeetHeader />
+            <YeetTopper />
           </Row>
           <Row
-            backgroundColor="teal"
-            borderTopColor={'white'}
-            borderTopWidth={'2'}
+            backgroundColor="black"
             borderRightColor={'white'}
             borderRightWidth={'4'}
-            borderBottomColor={'white'}
-            borderBottomWidth={'2'}
             borderLeftColor={'white'}
             borderLeftWidth={'4'}
-            height="3/5"
+            height="2/5"
           >
             <Columns grow>
               <Column
@@ -224,18 +220,19 @@ app.frame('/yeeter/:yeeterid', async c => {
                 textAlign="center"
                 textTransform="uppercase"
                 alignHorizontal="center"
-                alignVertical="center"
                 paddingRight="12"
                 paddingLeft="12"
                 width="1/1"
               >
-                <Heading wrap="balance">Missing Yeeter Mission</Heading>
+                <Heading size="64" wrap="balance">
+                  Lost Your Way
+                </Heading>
               </Column>
             </Columns>
           </Row>
           <Row
             backgroundColor="black"
-            color="white"
+            color="teal"
             textTransform="uppercase"
             borderRightColor={'white'}
             borderRightWidth={'4'}
@@ -245,48 +242,7 @@ app.frame('/yeeter/:yeeterid', async c => {
             borderLeftWidth={'4'}
             height="1/5"
           >
-            <Columns grow>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Goal</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Raised</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Ends</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Tribute</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-            </Columns>
+            <YeetHeader />
           </Row>
         </Rows>
       ),
