@@ -1,7 +1,17 @@
 import 'dotenv/config';
 
 import { Frog, Button } from 'frog';
-import { Column, Columns, Row, Rows, Heading, Text, vars } from './ui.js';
+import {
+  Column,
+  Columns,
+  Row,
+  Rows,
+  Heading,
+  Text,
+  vars,
+  VStack,
+  Box,
+} from './ui.js';
 import { devtools } from 'frog/dev';
 import { serveStatic } from 'frog/serve-static';
 import { handle } from 'frog/vercel';
@@ -16,7 +26,7 @@ import {
 import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from '../utils/constants.js';
 
 import { YeetTopper } from '../components/YeetTopper.js';
-import { YeetHeader } from '../components/YeetFooter.js';
+import { YeetFooter } from '../components/YeetFooter.js';
 
 export const app = new Frog({
   origin: 'https://frames.yeet.haus',
@@ -41,11 +51,6 @@ app.frame('/yeeter/:yeeterid', async c => {
     query: `{yeeter(id: "${yeeterid.toLowerCase()}") {id endTime startTime minTribute multiplier goal dao { id shareTokenSymbol  }}}`,
   });
 
-  console.log(GRAPH_ENDPOINT);
-  console.log(yeetData);
-
-  // Added this to fix an error...it might not be right
-  // if (!yeetData) {
   if (!yeetData || !yeetData.data || !yeetData.data.yeeter) {
     return c.res({
       image: (
@@ -101,7 +106,7 @@ app.frame('/yeeter/:yeeterid', async c => {
             borderLeftWidth={'4'}
             height="1/5"
           >
-            <YeetHeader />
+            <YeetFooter />
           </Row>
         </Rows>
       ),
@@ -168,7 +173,7 @@ app.frame('/yeeter/:yeeterid', async c => {
             borderLeftWidth={'4'}
             height="1/5"
           >
-            <YeetHeader />
+            <YeetFooter />
           </Row>
         </Rows>
       ),
@@ -177,13 +182,12 @@ app.frame('/yeeter/:yeeterid', async c => {
 
   const daoid = yeetData.data.yeeter.dao.id;
 
-  console.log('daoid', daoid);
+  console.log('daoid on Not Ready to Bang:', daoid);
+  console.log('yeeterid on Not Ready to Bang:', yeeterid);
 
   const metaRes = await postData(DH_GRAPH_ENDPOINT, {
     query: `{records(where: { dao: "${daoid.toLowerCase()}", table: "daoProfile" }, orderBy: createdAt, orderDirection: desc) {id content dao { name } }}`,
   });
-
-  console.log('metaRes', metaRes);
 
   const meta = addParsedContent(metaRes.data.records[0].content);
 
@@ -242,7 +246,7 @@ app.frame('/yeeter/:yeeterid', async c => {
             borderLeftWidth={'4'}
             height="1/5"
           >
-            <YeetHeader />
+            <YeetFooter />
           </Row>
         </Rows>
       ),
@@ -250,20 +254,18 @@ app.frame('/yeeter/:yeeterid', async c => {
   }
 
   const name = metaRes.data.records[0].dao.name;
-  const mission = meta?.missionStatement;
   const endTime = formatShortDateTimeFromSeconds(yeetData.data.yeeter.endTime);
   const goal = formatEther(yeetData.data.yeeter.goal);
   const minTribute = formatEther(yeetData.data.yeeter.minTribute);
-  const shareTokenSymbol = formatEther(yeetData.data.yeeter.shareTokenSymbol);
+  const shareTokenSymbol = yeetData.data.yeeter.dao.shareTokenSymbol;
 
-  // query: `{yeeter(id: "${yeeterid.toLowerCase()}") {id endTime startTime minTribute multiplier goal dao { id shareTokenSymbol  }}}`,
   return c.res({
-    action: `/success/${daoid}`,
+    action: `/success/${daoid}/${yeeterid}`,
     image: (
       <Rows grow>
         <Row
           backgroundColor="black"
-          color="teal"
+          color="blue"
           textTransform="uppercase"
           borderTopColor={'white'}
           borderTopWidth={'4'}
@@ -271,72 +273,58 @@ app.frame('/yeeter/:yeeterid', async c => {
           borderRightWidth={'4'}
           borderLeftColor={'white'}
           borderLeftWidth={'4'}
-          height="1/5"
+          height="2/5"
         >
           <Columns grow>
-            <Column alignHorizontal="center" alignVertical="center" width="1/6">
-              <Heading>Yeet</Heading>
+            <Column alignHorizontal="center" alignVertical="center" width="1/4">
+              <Heading size="48">Goal</Heading>
+              <Text size="32" color="white" weight="400">
+                {goal} ETH
+              </Text>
             </Column>
-            <Column alignHorizontal="center" alignVertical="center" width="1/6">
-              <Heading>Yeet</Heading>
+            <Column alignHorizontal="center" alignVertical="center" width="1/4">
+              <Heading size="48">Price</Heading>
+              <Text size="32" color="white" weight="400">
+                {minTribute} ETH
+              </Text>
             </Column>
-            <Column alignHorizontal="center" alignVertical="center" width="1/6">
-              <Heading>Yeet</Heading>
+            <Column alignHorizontal="center" alignVertical="center" width="1/4">
+              <Heading size="48">Tokens</Heading>
+              <Text size="32" color="white" weight="400">
+                1000
+              </Text>
             </Column>
-            <Column alignHorizontal="center" alignVertical="center" width="1/6">
-              <Heading>Yeet</Heading>
-            </Column>
-            <Column alignHorizontal="center" alignVertical="center" width="1/6">
-              <Heading>Yeet</Heading>
-            </Column>
-            <Column alignHorizontal="center" alignVertical="center" width="1/6">
-              <Heading>Yeet</Heading>
-            </Column>
-          </Columns>
-        </Row>
-        <Row
-          backgroundColor="teal"
-          borderTopColor={'white'}
-          borderTopWidth={'2'}
-          borderRightColor={'white'}
-          borderRightWidth={'4'}
-          borderBottomColor={'white'}
-          borderBottomWidth={'2'}
-          borderLeftColor={'white'}
-          borderLeftWidth={'4'}
-          height="3/5"
-        >
-          <Columns grow>
-            <Column
-              backgroundColor="black"
-              color="white"
-              textAlign="center"
-              alignHorizontal="center"
-              alignVertical="center"
-              paddingRight="12"
-              paddingLeft="12"
-              width="1/2"
-            >
-              <Heading wrap="balance">{name}</Heading>
-            </Column>
-            <Column
-              backgroundColor="black"
-              color="white"
-              alignHorizontal="center"
-              alignVertical="center"
-              paddingRight="12"
-              paddingLeft="12"
-              width="1/2"
-            >
-              <Heading size="24" weight="400">
-                {mission}
-              </Heading>
+            <Column alignHorizontal="center" alignVertical="center" width="1/4">
+              <Heading size="48">Ends</Heading>
+              <Text size="32" color="white" weight="400">
+                {endTime}
+              </Text>
             </Column>
           </Columns>
         </Row>
         <Row
           backgroundColor="black"
           color="white"
+          borderRightColor={'white'}
+          borderRightWidth={'4'}
+          borderLeftColor={'white'}
+          borderLeftWidth={'4'}
+          height="3/5"
+          // alignHorizontal="center"
+          // alignVertical="center"
+        >
+          <Box paddingTop="28" textTransform="uppercase">
+            <Heading size="48" color="orange" align="center" wrap="balance">
+              {name} pre-sale
+            </Heading>
+            <Text size="32" color="white" align="center" wrap="balance">
+              Deposit {minTribute} and receive 1000 ${shareTokenSymbol}
+            </Text>
+          </Box>
+        </Row>
+        <Row
+          backgroundColor="black"
+          color="teal"
           textTransform="uppercase"
           borderRightColor={'white'}
           borderRightWidth={'4'}
@@ -346,32 +334,7 @@ app.frame('/yeeter/:yeeterid', async c => {
           borderLeftWidth={'4'}
           height="1/5"
         >
-          <Columns grow>
-            <Column alignHorizontal="center" alignVertical="center" width="1/4">
-              <Heading size="18">Goal</Heading>
-              <Text size="18" weight="400">
-                {goal} ETH
-              </Text>
-            </Column>
-            <Column alignHorizontal="center" alignVertical="center" width="1/4">
-              <Heading size="18">Raised</Heading>
-              <Text size="18" weight="400">
-                {shareTokenSymbol} $
-              </Text>
-            </Column>
-            <Column alignHorizontal="center" alignVertical="center" width="1/4">
-              <Heading size="18">Ends</Heading>
-              <Text size="18" weight="400">
-                {endTime}
-              </Text>
-            </Column>
-            <Column alignHorizontal="center" alignVertical="center" width="1/4">
-              <Heading size="18">Tribute</Heading>
-              <Text size="18" weight="400">
-                {minTribute} ETH
-              </Text>
-            </Column>
-          </Columns>
+          <YeetFooter />
         </Row>
       </Rows>
     ),
@@ -379,19 +342,22 @@ app.frame('/yeeter/:yeeterid', async c => {
       <Button.Transaction
         target={`/yeet/${yeeterid}/${yeetData.data.yeeter.minTribute}`}
       >
-        YEET
+        BANG IT
       </Button.Transaction>,
     ],
   });
 });
 
-app.frame(`/success/:daoid`, c => {
+app.frame(`/success/:daoid/:yeeterid`, c => {
   const daoid = c.req.param('daoid');
+  const yeeterid = c.req.param('yeeterid');
+  console.log('daoid on success button:', daoid);
+  console.log('yeeterid on success button:', yeeterid);
   return c.res({
     image: '/images/success.png',
     intents: [
       <Button.Link
-        href={`https://app.yeet.haus/#/molochV3/0x2105/${daoid.toLowerCase()}`}
+        href={`https://dh-edu-token-defi.github.io/sb-app/#/molochv3/0x2105/${daoid.toLowerCase()}/${yeeterid.toLowerCase()}`}
       >
         View Project
       </Button.Link>,
@@ -403,7 +369,7 @@ app.transaction('/yeet/:yeeterid/:mintribute', c => {
   const yeeterid = c.req.param('yeeterid');
   const mintribute = c.req.param('mintribute');
   const shamanAddress = getAddress(yeeterid);
-  const message = 'YEET FROM FRAMES';
+  const message = 'WE BALL FROM FRAMES';
 
   return c.contract({
     abi: [

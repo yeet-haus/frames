@@ -1,6 +1,6 @@
 import { Column, Columns, Heading } from '../api/ui.js';
 
-export const YeetHeader = () => {
+export const YeetFooter = () => {
   return (
     <Columns grow>
       <Column alignHorizontal="right" alignVertical="center" width="1/6">
