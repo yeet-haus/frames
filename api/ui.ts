@@ -4,8 +4,11 @@ export const {
   Box,
   Columns,
   Column,
+  Divider,
   Heading,
   HStack,
+  Icon,
+  Image,
   Rows,
   Row,
   Spacer,
@@ -14,22 +17,16 @@ export const {
   vars,
 } = createSystem({
   colors: {
-    nipple: '#F098C6',
-    diarrhea: '#655C31',
-    jaundice: '#FEDB1D',
-    banality: '#F9E1A3',
-    death: '#000000',
-    angel: '#FFFFFF',
+    white: '#E6F9F4',
+    black: '#000000',
+    teal: '#57BCAD',
+    blue: '#3B8FF2',
+    orange: `#F08643`,
   },
   fonts: {
     default: [
       {
-        name: 'Poppins',
-        source: 'google',
-        weight: 900,
-      },
-      {
-        name: 'Poppins',
+        name: 'Jersey 15',
         source: 'google',
         weight: 400,
       },
