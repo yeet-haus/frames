@@ -15,7 +15,6 @@ import { YeetTopper } from "../components/YeetTopper.js";
 import { YeetFooter } from "../components/YeetFooter.js";
 
 export const app = new Frog({
-  origin: "https://speed-frame.vercel.app",
   headers: {
     "cache-control": "max-age=0",
   },
