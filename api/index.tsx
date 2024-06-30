@@ -1,51 +1,37 @@
-import 'dotenv/config';
+import "dotenv/config";
 
-import { Frog, Button } from 'frog';
-import {
-  Column,
-  Columns,
-  Row,
-  Rows,
-  Heading,
-  Text,
-  vars,
-  VStack,
-  Box,
-} from './ui.js';
-import { devtools } from 'frog/dev';
-import { serveStatic } from 'frog/serve-static';
-import { handle } from 'frog/vercel';
+import { Frog, Button } from "frog";
+import { Column, Columns, Row, Rows, Heading, Text, vars, Box } from "./ui.js";
+import { devtools } from "frog/dev";
+import { serveStatic } from "frog/serve-static";
+import { handle } from "frog/vercel";
 
-import { formatEther, getAddress } from 'viem';
+import { formatEther, getAddress } from "viem";
 
-import {
-  addParsedContent,
-  formatShortDateTimeFromSeconds,
-  postData,
-} from '../utils/helpers.js';
-import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from '../utils/constants.js';
+import { formatShortDateTimeFromSeconds, postData } from "../utils/helpers.js";
+import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from "../utils/constants.js";
 
-import { YeetTopper } from '../components/YeetTopper.js';
-import { YeetFooter } from '../components/YeetFooter.js';
+import { YeetTopper } from "../components/YeetTopper.js";
+import { YeetFooter } from "../components/YeetFooter.js";
 
 export const app = new Frog({
-  origin: 'https://frames.yeet.haus',
+  origin: "https://frames.yeet.haus",
   headers: {
-    'cache-control': 'max-age=0',
+    "cache-control": "max-age=0",
   },
-  assetsPath: '/',
-  basePath: '/api',
-  browserLocation: 'https://app.yeet.haus/',
-  verify: 'silent',
+  assetsPath: "/",
+  basePath: "/api",
+  browserLocation: "https://app.yeet.haus/",
+  verify: "silent",
   ui: { vars },
   initialState: {
-    minTribute: '0',
-    shamanAddress: '',
+    minTribute: "0",
+    shamanAddress: "",
   },
 });
 
-app.frame('/yeeter/:yeeterid', async c => {
-  const yeeterid = c.req.param('yeeterid');
+app.frame("/yeeter/:yeeterid", async (c) => {
+  const yeeterid = c.req.param("yeeterid");
 
   const yeetData = await postData(GRAPH_ENDPOINT, {
     query: `{yeeter(id: "${yeeterid.toLowerCase()}") {id endTime startTime minTribute multiplier goal dao { id shareTokenSymbol  }}}`,
@@ -59,22 +45,22 @@ app.frame('/yeeter/:yeeterid', async c => {
             backgroundColor="black"
             color="blue"
             textTransform="uppercase"
-            borderTopColor={'white'}
-            borderTopWidth={'4'}
-            borderRightColor={'white'}
-            borderRightWidth={'4'}
-            borderLeftColor={'white'}
-            borderLeftWidth={'4'}
+            borderTopColor={"white"}
+            borderTopWidth={"4"}
+            borderRightColor={"white"}
+            borderRightWidth={"4"}
+            borderLeftColor={"white"}
+            borderLeftWidth={"4"}
             height="2/5"
           >
             <YeetTopper />
           </Row>
           <Row
             backgroundColor="black"
-            borderRightColor={'white'}
-            borderRightWidth={'4'}
-            borderLeftColor={'white'}
-            borderLeftWidth={'4'}
+            borderRightColor={"white"}
+            borderRightWidth={"4"}
+            borderLeftColor={"white"}
+            borderLeftWidth={"4"}
             height="2/5"
           >
             <Columns grow>
@@ -98,12 +84,12 @@ app.frame('/yeeter/:yeeterid', async c => {
             backgroundColor="black"
             color="teal"
             textTransform="uppercase"
-            borderRightColor={'white'}
-            borderRightWidth={'4'}
-            borderBottomColor={'white'}
-            borderBottomWidth={'4'}
-            borderLeftColor={'white'}
-            borderLeftWidth={'4'}
+            borderRightColor={"white"}
+            borderRightWidth={"4"}
+            borderBottomColor={"white"}
+            borderBottomWidth={"4"}
+            borderLeftColor={"white"}
+            borderLeftWidth={"4"}
             height="1/5"
           >
             <YeetFooter />
@@ -126,22 +112,22 @@ app.frame('/yeeter/:yeeterid', async c => {
             backgroundColor="black"
             color="blue"
             textTransform="uppercase"
-            borderTopColor={'white'}
-            borderTopWidth={'4'}
-            borderRightColor={'white'}
-            borderRightWidth={'4'}
-            borderLeftColor={'white'}
-            borderLeftWidth={'4'}
+            borderTopColor={"white"}
+            borderTopWidth={"4"}
+            borderRightColor={"white"}
+            borderRightWidth={"4"}
+            borderLeftColor={"white"}
+            borderLeftWidth={"4"}
             height="2/5"
           >
             <YeetTopper />
           </Row>
           <Row
             backgroundColor="black"
-            borderRightColor={'white'}
-            borderRightWidth={'4'}
-            borderLeftColor={'white'}
-            borderLeftWidth={'4'}
+            borderRightColor={"white"}
+            borderRightWidth={"4"}
+            borderLeftColor={"white"}
+            borderLeftWidth={"4"}
             height="2/5"
           >
             <Columns grow>
@@ -165,12 +151,12 @@ app.frame('/yeeter/:yeeterid', async c => {
             backgroundColor="black"
             color="teal"
             textTransform="uppercase"
-            borderRightColor={'white'}
-            borderRightWidth={'4'}
-            borderBottomColor={'white'}
-            borderBottomWidth={'4'}
-            borderLeftColor={'white'}
-            borderLeftWidth={'4'}
+            borderRightColor={"white"}
+            borderRightWidth={"4"}
+            borderBottomColor={"white"}
+            borderBottomWidth={"4"}
+            borderLeftColor={"white"}
+            borderLeftWidth={"4"}
             height="1/5"
           >
             <YeetFooter />
@@ -182,76 +168,12 @@ app.frame('/yeeter/:yeeterid', async c => {
 
   const daoid = yeetData.data.yeeter.dao.id;
 
-  console.log('daoid on Not Ready to Bang:', daoid);
-  console.log('yeeterid on Not Ready to Bang:', yeeterid);
+  console.log("daoid on Not Ready to Bang:", daoid);
+  console.log("yeeterid on Not Ready to Bang:", yeeterid);
 
   const metaRes = await postData(DH_GRAPH_ENDPOINT, {
     query: `{records(where: { dao: "${daoid.toLowerCase()}", table: "daoProfile" }, orderBy: createdAt, orderDirection: desc) {id content dao { name } }}`,
   });
-
-  const meta = addParsedContent(metaRes.data.records[0].content);
-
-  if (!metaRes.data.records[0]) {
-    return c.res({
-      image: (
-        <Rows grow>
-          <Row
-            backgroundColor="black"
-            color="blue"
-            textTransform="uppercase"
-            borderTopColor={'white'}
-            borderTopWidth={'4'}
-            borderRightColor={'white'}
-            borderRightWidth={'4'}
-            borderLeftColor={'white'}
-            borderLeftWidth={'4'}
-            height="2/5"
-          >
-            <YeetTopper />
-          </Row>
-          <Row
-            backgroundColor="black"
-            borderRightColor={'white'}
-            borderRightWidth={'4'}
-            borderLeftColor={'white'}
-            borderLeftWidth={'4'}
-            height="2/5"
-          >
-            <Columns grow>
-              <Column
-                backgroundColor="black"
-                color="white"
-                textAlign="center"
-                textTransform="uppercase"
-                alignHorizontal="center"
-                paddingRight="12"
-                paddingLeft="12"
-                width="1/1"
-              >
-                <Heading size="64" wrap="balance">
-                  Lost Your Way
-                </Heading>
-              </Column>
-            </Columns>
-          </Row>
-          <Row
-            backgroundColor="black"
-            color="teal"
-            textTransform="uppercase"
-            borderRightColor={'white'}
-            borderRightWidth={'4'}
-            borderBottomColor={'white'}
-            borderBottomWidth={'4'}
-            borderLeftColor={'white'}
-            borderLeftWidth={'4'}
-            height="1/5"
-          >
-            <YeetFooter />
-          </Row>
-        </Rows>
-      ),
-    });
-  }
 
   const name = metaRes.data.records[0].dao.name;
   const endTime = formatShortDateTimeFromSeconds(yeetData.data.yeeter.endTime);
@@ -267,12 +189,12 @@ app.frame('/yeeter/:yeeterid', async c => {
           backgroundColor="black"
           color="blue"
           textTransform="uppercase"
-          borderTopColor={'white'}
-          borderTopWidth={'4'}
-          borderRightColor={'white'}
-          borderRightWidth={'4'}
-          borderLeftColor={'white'}
-          borderLeftWidth={'4'}
+          borderTopColor={"white"}
+          borderTopWidth={"4"}
+          borderRightColor={"white"}
+          borderRightWidth={"4"}
+          borderLeftColor={"white"}
+          borderLeftWidth={"4"}
           height="2/5"
         >
           <Columns grow>
@@ -305,10 +227,10 @@ app.frame('/yeeter/:yeeterid', async c => {
         <Row
           backgroundColor="black"
           color="white"
-          borderRightColor={'white'}
-          borderRightWidth={'4'}
-          borderLeftColor={'white'}
-          borderLeftWidth={'4'}
+          borderRightColor={"white"}
+          borderRightWidth={"4"}
+          borderLeftColor={"white"}
+          borderLeftWidth={"4"}
           height="3/5"
           // alignHorizontal="center"
           // alignVertical="center"
@@ -326,12 +248,12 @@ app.frame('/yeeter/:yeeterid', async c => {
           backgroundColor="black"
           color="teal"
           textTransform="uppercase"
-          borderRightColor={'white'}
-          borderRightWidth={'4'}
-          borderBottomColor={'white'}
-          borderBottomWidth={'4'}
-          borderLeftColor={'white'}
-          borderLeftWidth={'4'}
+          borderRightColor={"white"}
+          borderRightWidth={"4"}
+          borderBottomColor={"white"}
+          borderBottomWidth={"4"}
+          borderLeftColor={"white"}
+          borderLeftWidth={"4"}
           height="1/5"
         >
           <YeetFooter />
@@ -348,16 +270,16 @@ app.frame('/yeeter/:yeeterid', async c => {
   });
 });
 
-app.frame(`/success/:daoid/:yeeterid`, c => {
-  const daoid = c.req.param('daoid');
-  const yeeterid = c.req.param('yeeterid');
-  console.log('daoid on success button:', daoid);
-  console.log('yeeterid on success button:', yeeterid);
+app.frame(`/success/:daoid/:yeeterid`, (c) => {
+  const daoid = c.req.param("daoid");
+  const yeeterid = c.req.param("yeeterid");
+  console.log("daoid on success button:", daoid);
+  console.log("yeeterid on success button:", yeeterid);
   return c.res({
-    image: '/images/success.png',
+    image: "/img",
     intents: [
       <Button.Link
-        href={`https://dh-edu-token-defi.github.io/sb-app/#/molochv3/0x2105/${daoid.toLowerCase()}/${yeeterid.toLowerCase()}`}
+        href={`https://speedball.daohaus.club/#/molochv3/0x2105/${daoid.toLowerCase()}/${yeeterid.toLowerCase()}`}
       >
         View Project
       </Button.Link>,
@@ -365,24 +287,28 @@ app.frame(`/success/:daoid/:yeeterid`, c => {
   });
 });
 
-app.transaction('/yeet/:yeeterid/:mintribute', c => {
-  const yeeterid = c.req.param('yeeterid');
-  const mintribute = c.req.param('mintribute');
+app.image("/img", (c) => {
+  return c.res({ image: "/images/success.png" });
+});
+
+app.transaction("/yeet/:yeeterid/:mintribute", (c) => {
+  const yeeterid = c.req.param("yeeterid");
+  const mintribute = c.req.param("mintribute");
   const shamanAddress = getAddress(yeeterid);
-  const message = 'WE BALL FROM FRAMES';
+  const message = "WE BALL FROM FRAMES";
 
   return c.contract({
     abi: [
       {
-        inputs: [{ internalType: 'string', name: 'message', type: 'string' }],
-        name: 'contributeEth',
+        inputs: [{ internalType: "string", name: "message", type: "string" }],
+        name: "contributeEth",
         outputs: [],
-        stateMutability: 'payable',
-        type: 'function',
+        stateMutability: "payable",
+        type: "function",
       },
     ],
-    chainId: 'eip155:8453',
-    functionName: 'contributeEth',
+    chainId: "eip155:8453",
+    functionName: "contributeEth",
     value: BigInt(mintribute),
     args: [message],
     to: shamanAddress,
@@ -390,9 +316,9 @@ app.transaction('/yeet/:yeeterid/:mintribute', c => {
 });
 
 // @ts-ignore
-const isEdgeFunction = typeof EdgeFunction !== 'undefined';
-const isProduction = isEdgeFunction || import.meta.env?.MODE !== 'development';
-devtools(app, isProduction ? { assetsPath: '/.frog' } : { serveStatic });
+const isEdgeFunction = typeof EdgeFunction !== "undefined";
+const isProduction = isEdgeFunction || import.meta.env?.MODE !== "development";
+devtools(app, isProduction ? { assetsPath: "/.frog" } : { serveStatic });
 
 export const GET = handle(app);
 export const POST = handle(app);
