@@ -12,8 +12,8 @@ dependencies:
     specifier: ^16.4.5
     version: 16.4.5
   frog:
-    specifier: latest
-    version: 0.8.6(@types/node@20.12.7)(hono@4.2.6)(typescript@5.4.5)
+    specifier: 0.12.1
+    version: 0.12.1(@types/node@20.12.7)(hono@4.2.6)(typescript@5.4.5)
   hono:
     specifier: ^4.2.6
     version: 4.2.6
@@ -505,19 +505,19 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
-  /@hono/node-server@1.11.0:
-    resolution: {integrity: sha512-TLIJq9TMtD1NEG1mVoqNUn1Ita0qSaB5XboZErjFBcO/GJYXwWY4dVdTi9G0lbxtu0x+hJXDItcLaFHb7rlFTw==}
+  /@hono/node-server@1.11.4:
+    resolution: {integrity: sha512-8TOiiiAqcFC6f62P7M9p6adQREAlWdVi1awehAwgWW+3R65/rKzHnLARO/Hu/466z01VNViBoogqatqXJMyItA==}
     engines: {node: '>=18.14.1'}
     dev: false
 
-  /@hono/valibot-validator@0.2.3(hono@4.2.6)(valibot@0.30.0):
-    resolution: {integrity: sha512-XyrXNLHkOImOw47dkI1W/4MCneOWaIPaFvrtpGzX3OpfgUlUrE6FKeYvlfbajqWDAFzeWWDx4zz8yZ5LE8A8Rg==}
+  /@hono/valibot-validator@0.3.0(hono@4.2.6)(valibot@0.31.1):
+    resolution: {integrity: sha512-EcGJKzLt11SK4K11yKHrhI93ECtKeSHAnnENHw5tCL0ZhyDIx96avc3Ua8/ri4fwVvRPuOzFQ2OBRsVvwZuqeQ==}
     peerDependencies:
       hono: '>=3.9.0'
-      valibot: '>=0.13.1 <1'
+      valibot: '>=0.31.0 <1'
     dependencies:
       hono: 4.2.6
-      valibot: 0.30.0
+      valibot: 0.31.1
     dev: false
 
   /@jridgewell/resolve-uri@3.1.2:
@@ -1713,19 +1713,19 @@ packages:
     dependencies:
       to-regex-range: 5.0.1
 
-  /frog@0.8.6(@types/node@20.12.7)(hono@4.2.6)(typescript@5.4.5):
-    resolution: {integrity: sha512-ESHQqSwNNE1QqnELso4BnXZxJYUIhjkuD6rgt+esdZuUznnMqbWTRzWbQkcv7NiWkPsBJ3HuXlOCgyNiux/kPg==}
+  /frog@0.12.1(@types/node@20.12.7)(hono@4.2.6)(typescript@5.4.5):
+    resolution: {integrity: sha512-RiQQRmBIZwTcjarIlrGlOTbRfgmrMwCoCQ3gtAugM+Y3840+y384Ylqc74cXG7EwIQF6TMlfN5HC8/S2WeJI1w==}
     hasBin: true
     peerDependencies:
-      hono: ^4
+      hono: ^4.4.4
       typescript: '>=5.0.4'
     peerDependenciesMeta:
       typescript:
         optional: true
     dependencies:
       '@bufbuild/protobuf': 1.8.0
-      '@hono/node-server': 1.11.0
-      '@hono/valibot-validator': 0.2.3(hono@4.2.6)(valibot@0.30.0)
+      '@hono/node-server': 1.11.4
+      '@hono/valibot-validator': 0.3.0(hono@4.2.6)(valibot@0.31.1)
       '@noble/curves': 1.4.0
       '@noble/hashes': 1.4.0
       cac: 6.7.14
@@ -1740,7 +1740,7 @@ packages:
       lz-string: 1.5.0
       path-browserify: 1.0.1
       typescript: 5.4.5
-      valibot: 0.30.0
+      valibot: 0.31.1
       viem: 2.9.25(typescript@5.4.5)
       vite: 5.2.10(@types/node@20.12.7)
     transitivePeerDependencies:
@@ -2779,8 +2779,8 @@ packages:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
     dev: true
 
-  /valibot@0.30.0:
-    resolution: {integrity: sha512-5POBdbSkM+3nvJ6ZlyQHsggisfRtyT4tVTo1EIIShs6qCdXJnyWU5TJ68vr8iTg5zpOLjXLRiBqNx+9zwZz/rA==}
+  /valibot@0.31.1:
+    resolution: {integrity: sha512-2YYIhPrnVSz/gfT2/iXVTrSj92HwchCt9Cga/6hX4B26iCz9zkIsGTS0HjDYTZfTi1Un0X6aRvhBi1cfqs/i0Q==}
     dev: false
 
   /vercel@32.7.2:

@@ -15,13 +15,13 @@ import { YeetTopper } from "../components/YeetTopper.js";
 import { YeetFooter } from "../components/YeetFooter.js";
 
 export const app = new Frog({
-  origin: "https://frames.yeet.haus",
+  // origin: "https://frames.yeet.haus",
   headers: {
     "cache-control": "max-age=0",
   },
   assetsPath: "/",
   basePath: "/api",
-  browserLocation: "https://app.yeet.haus/",
+  browserLocation: "https://speedball.daohaus.club/",
   verify: "silent",
   ui: { vars },
   initialState: {
@@ -276,7 +276,8 @@ app.frame(`/success/:daoid/:yeeterid`, (c) => {
   console.log("daoid on success button:", daoid);
   console.log("yeeterid on success button:", yeeterid);
   return c.res({
-    image: "/img",
+    // image: "/img",
+    image: "/images/success.png",
     intents: [
       <Button.Link
         href={`https://speedball.daohaus.club/#/molochv3/0x2105/${daoid.toLowerCase()}/${yeeterid.toLowerCase()}`}
@@ -287,9 +288,9 @@ app.frame(`/success/:daoid/:yeeterid`, (c) => {
   });
 });
 
-app.image("/img", (c) => {
-  return c.res({ image: "/images/success.png" });
-});
+// app.image("/img", (c) => {
+//   return c.res({ image: "/images/success.png" });
+// });
 
 app.transaction("/yeet/:yeeterid/:mintribute", (c) => {
   const yeeterid = c.req.param("yeeterid");
