@@ -10,7 +10,7 @@
   "dependencies": {
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
-    "frog": "latest",
+    "frog": "0.12.1",
     "hono": "^4.2.6",
     "viem": "^2.9.25"
   },
