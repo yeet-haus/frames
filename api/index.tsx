@@ -27,6 +27,7 @@ export const app = new Frog({
     minTribute: "0",
     shamanAddress: "",
   },
+  title: "Speedball",
 });
 
 app.frame("/yeeter/:yeeterid", async (c) => {
