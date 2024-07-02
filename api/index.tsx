@@ -19,7 +19,7 @@ import { Header } from '../components/Header.js';
 import { Footer } from '../components/Footer.js';
 
 export const app = new Frog({
-  // origin: 'https://frames.yeet.haus',
+  origin: 'https://frames.yeet.haus',
   title: 'YEET',
   assetsPath: '/',
   basePath: '/api',
