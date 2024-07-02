@@ -4,7 +4,6 @@ import { Frog, Button } from 'frog';
 import { Column, Columns, Row, Rows, Heading, Text, vars } from './ui.js';
 import { devtools } from 'frog/dev';
 import { serveStatic } from 'frog/serve-static';
-import { neynar } from 'frog/hubs';
 import { handle } from 'frog/vercel';
 
 import { formatEther, getAddress } from 'viem';
@@ -16,19 +15,14 @@ import {
 } from '../utils/helpers.js';
 import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from '../utils/constants.js';
 
-// Uncomment to use Edge Runtime.
-// export const config = {
-//   runtime: 'edge',
-// }
+import { Header } from '../components/Header.js';
+import { Footer } from '../components/Footer.js';
 
 export const app = new Frog({
-  origin: 'https://frames.yeet.haus',
-  headers: {
-    'cache-control': 'max-age=0',
-  },
+  // origin: 'https://frames.yeet.haus',
+  title: 'YEET',
   assetsPath: '/',
   basePath: '/api',
-  hub: neynar({ apiKey: process.env.NEYNAR_KEY || '' }),
   browserLocation: 'https://app.yeet.haus/',
   verify: 'silent',
   ui: { vars },
@@ -61,50 +55,7 @@ app.frame('/yeeter/:yeeterid', async c => {
             borderLeftWidth={'4'}
             height="1/5"
           >
-            <Columns grow>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-            </Columns>
+            <Header />
           </Row>
           <Row
             backgroundColor="nipple"
@@ -146,48 +97,7 @@ app.frame('/yeeter/:yeeterid', async c => {
             borderLeftWidth={'4'}
             height="1/5"
           >
-            <Columns grow>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Goal</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Raised</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Ends</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Tribute</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-            </Columns>
+            <Footer />
           </Row>
         </Rows>
       ),
@@ -215,50 +125,7 @@ app.frame('/yeeter/:yeeterid', async c => {
             borderLeftWidth={'4'}
             height="1/5"
           >
-            <Columns grow>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-            </Columns>
+            <Header />
           </Row>
           <Row
             backgroundColor="nipple"
@@ -300,48 +167,7 @@ app.frame('/yeeter/:yeeterid', async c => {
             borderLeftWidth={'4'}
             height="1/5"
           >
-            <Columns grow>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Goal</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Raised</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Ends</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Tribute</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-            </Columns>
+            <Footer />
           </Row>
         </Rows>
       ),
@@ -372,50 +198,7 @@ app.frame('/yeeter/:yeeterid', async c => {
             borderLeftWidth={'4'}
             height="1/5"
           >
-            <Columns grow>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/6"
-              >
-                <Heading>Yeet</Heading>
-              </Column>
-            </Columns>
+            <Header />
           </Row>
           <Row
             backgroundColor="nipple"
@@ -457,48 +240,7 @@ app.frame('/yeeter/:yeeterid', async c => {
             borderLeftWidth={'4'}
             height="1/5"
           >
-            <Columns grow>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Goal</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Raised</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Ends</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-              <Column
-                alignHorizontal="center"
-                alignVertical="center"
-                width="1/4"
-              >
-                <Heading size="18">Tribute</Heading>
-                <Text size="18" weight="400">
-                  xxx
-                </Text>
-              </Column>
-            </Columns>
+            <Footer />
           </Row>
         </Rows>
       ),
@@ -528,26 +270,7 @@ app.frame('/yeeter/:yeeterid', async c => {
           borderLeftWidth={'4'}
           height="1/5"
         >
-          <Columns grow>
-            <Column alignHorizontal="center" alignVertical="center" width="1/6">
-              <Heading>Yeet</Heading>
-            </Column>
-            <Column alignHorizontal="center" alignVertical="center" width="1/6">
-              <Heading>Yeet</Heading>
-            </Column>
-            <Column alignHorizontal="center" alignVertical="center" width="1/6">
-              <Heading>Yeet</Heading>
-            </Column>
-            <Column alignHorizontal="center" alignVertical="center" width="1/6">
-              <Heading>Yeet</Heading>
-            </Column>
-            <Column alignHorizontal="center" alignVertical="center" width="1/6">
-              <Heading>Yeet</Heading>
-            </Column>
-            <Column alignHorizontal="center" alignVertical="center" width="1/6">
-              <Heading>Yeet</Heading>
-            </Column>
-          </Columns>
+          <Header />
         </Row>
         <Row
           backgroundColor="nipple"
