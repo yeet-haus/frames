@@ -4,6 +4,7 @@ import { Frog, Button } from 'frog';
 import { Column, Columns, Row, Rows, Heading, Text, vars } from './ui.js';
 import { devtools } from 'frog/dev';
 import { serveStatic } from 'frog/serve-static';
+import { neynar } from 'frog/hubs';
 import { handle } from 'frog/vercel';
 
 import { formatEther, getAddress } from 'viem';
@@ -19,8 +20,8 @@ import { Header } from '../components/Header.js';
 import { Footer } from '../components/Footer.js';
 
 export const app = new Frog({
-  origin: 'https://frames.yeet.haus',
   title: 'YEET',
+  // origin: 'https://frames.yeet.haus',
   assetsPath: '/',
   basePath: '/api',
   browserLocation: 'https://app.yeet.haus/',
@@ -366,7 +367,67 @@ app.frame('/yeeter/:yeeterid', async c => {
 app.frame(`/success/:daoid`, c => {
   const daoid = c.req.param('daoid');
   return c.res({
-    image: '/images/success.png',
+    // image: '/images/success.png',
+    image: (
+      <Rows grow>
+        <Row
+          backgroundColor="death"
+          color="nipple"
+          textTransform="uppercase"
+          borderTopColor={'angel'}
+          borderTopWidth={'4'}
+          borderRightColor={'angel'}
+          borderRightWidth={'4'}
+          borderLeftColor={'angel'}
+          borderLeftWidth={'4'}
+          height="1/5"
+        >
+          <Header />
+        </Row>
+        <Row
+          backgroundColor="nipple"
+          borderTopColor={'angel'}
+          borderTopWidth={'2'}
+          borderRightColor={'angel'}
+          borderRightWidth={'4'}
+          borderBottomColor={'angel'}
+          borderBottomWidth={'2'}
+          borderLeftColor={'angel'}
+          borderLeftWidth={'4'}
+          height="3/5"
+        >
+          <Columns grow>
+            <Column
+              backgroundColor="death"
+              color="angel"
+              textAlign="center"
+              textTransform="uppercase"
+              alignHorizontal="center"
+              alignVertical="center"
+              paddingRight="12"
+              paddingLeft="12"
+              width="1/1"
+            >
+              <Heading wrap="balance">Whoops I Yeeted Again</Heading>
+            </Column>
+          </Columns>
+        </Row>
+        <Row
+          backgroundColor="death"
+          color="angel"
+          textTransform="uppercase"
+          borderRightColor={'angel'}
+          borderRightWidth={'4'}
+          borderBottomColor={'angel'}
+          borderBottomWidth={'4'}
+          borderLeftColor={'angel'}
+          borderLeftWidth={'4'}
+          height="1/5"
+        >
+          <Footer />
+        </Row>
+      </Rows>
+    ),
     intents: [
       <Button.Link
         href={`https://app.yeet.haus/#/molochV3/0x2105/${daoid.toLowerCase()}`}
