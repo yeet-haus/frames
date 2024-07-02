@@ -4,6 +4,7 @@ import { Frog, Button } from 'frog';
 import { Column, Columns, Row, Rows, Heading, Text, vars } from './ui.js';
 import { devtools } from 'frog/dev';
 import { serveStatic } from 'frog/serve-static';
+import { neynar } from 'frog/hubs';
 import { handle } from 'frog/vercel';
 
 import { formatEther, getAddress } from 'viem';
@@ -19,8 +20,8 @@ import { Header } from '../components/Header.js';
 import { Footer } from '../components/Footer.js';
 
 export const app = new Frog({
-  origin: 'https://frames.yeet.haus',
   title: 'YEET',
+  // origin: 'https://frames.yeet.haus',
   assetsPath: '/',
   basePath: '/api',
   browserLocation: 'https://app.yeet.haus/',
@@ -407,7 +408,7 @@ app.frame(`/success/:daoid`, c => {
               paddingLeft="12"
               width="1/1"
             >
-              <Heading wrap="balance">I Yeeted</Heading>
+              <Heading wrap="balance">Whoops I Yeeted Again</Heading>
             </Column>
           </Columns>
         </Row>
