@@ -11,13 +11,13 @@
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "frog": "latest",
-    "hono": "^4.2.6",
-    "viem": "^2.9.25"
+    "hono": "^4.4.10",
+    "viem": "^2.16.5"
   },
   "devDependencies": {
-    "@types/node": "^20.12.7",
-    "tsx": "^4.7.2",
-    "typescript": "^5.4.5",
+    "@types/node": "^20.14.9",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.3",
     "vercel": "^32.7.2"
   }
 }
