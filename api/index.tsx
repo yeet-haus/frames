@@ -4,6 +4,7 @@ import { Frog, Button } from 'frog';
 import { Column, Columns, Row, Rows, Heading, Text, vars } from './ui.js';
 import { devtools } from 'frog/dev';
 import { serveStatic } from 'frog/serve-static';
+import { neynar } from 'frog/hubs';
 import { handle } from 'frog/vercel';
 
 import { formatEther, getAddress } from 'viem';
@@ -20,7 +21,7 @@ import { Footer } from '../components/Footer.js';
 
 export const app = new Frog({
   title: 'YEET',
-  origin: 'https://frames.yeet.haus',
+  // origin: 'https://frames.yeet.haus',
   assetsPath: '/',
   basePath: '/api',
   browserLocation: 'https://app.yeet.haus/',
@@ -41,7 +42,66 @@ app.frame('/yeeter/:yeeterid', async c => {
 
   if (!yeetData.data.yeeter) {
     return c.res({
-      image: '/img/not-found',
+      image: (
+        <Rows grow>
+          <Row
+            backgroundColor="death"
+            color="nipple"
+            textTransform="uppercase"
+            borderTopColor={'angel'}
+            borderTopWidth={'4'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
+            height="1/5"
+          >
+            <Header />
+          </Row>
+          <Row
+            backgroundColor="nipple"
+            borderTopColor={'angel'}
+            borderTopWidth={'2'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'2'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
+            height="3/5"
+          >
+            <Columns grow>
+              <Column
+                backgroundColor="death"
+                color="angel"
+                textAlign="center"
+                textTransform="uppercase"
+                alignHorizontal="center"
+                alignVertical="center"
+                paddingRight="12"
+                paddingLeft="12"
+                width="1/1"
+              >
+                <Heading wrap="balance">Yeeter Not Found</Heading>
+              </Column>
+            </Columns>
+          </Row>
+          <Row
+            backgroundColor="death"
+            color="angel"
+            textTransform="uppercase"
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
+            height="1/5"
+          >
+            <Footer />
+          </Row>
+        </Rows>
+      ),
     });
   }
 
@@ -52,7 +112,66 @@ app.frame('/yeeter/:yeeterid', async c => {
 
   if (!isActive) {
     return c.res({
-      image: '/img/not-active',
+      image: (
+        <Rows grow>
+          <Row
+            backgroundColor="death"
+            color="nipple"
+            textTransform="uppercase"
+            borderTopColor={'angel'}
+            borderTopWidth={'4'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
+            height="1/5"
+          >
+            <Header />
+          </Row>
+          <Row
+            backgroundColor="nipple"
+            borderTopColor={'angel'}
+            borderTopWidth={'2'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'2'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
+            height="3/5"
+          >
+            <Columns grow>
+              <Column
+                backgroundColor="death"
+                color="angel"
+                textAlign="center"
+                textTransform="uppercase"
+                alignHorizontal="center"
+                alignVertical="center"
+                paddingRight="12"
+                paddingLeft="12"
+                width="1/1"
+              >
+                <Heading wrap="balance">Yeeter Not Active</Heading>
+              </Column>
+            </Columns>
+          </Row>
+          <Row
+            backgroundColor="death"
+            color="angel"
+            textTransform="uppercase"
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
+            height="1/5"
+          >
+            <Footer />
+          </Row>
+        </Rows>
+      ),
     });
   }
 
@@ -66,7 +185,66 @@ app.frame('/yeeter/:yeeterid', async c => {
 
   if (!metaRes.data.records[0]) {
     return c.res({
-      image: '/img/missing',
+      image: (
+        <Rows grow>
+          <Row
+            backgroundColor="death"
+            color="nipple"
+            textTransform="uppercase"
+            borderTopColor={'angel'}
+            borderTopWidth={'4'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
+            height="1/5"
+          >
+            <Header />
+          </Row>
+          <Row
+            backgroundColor="nipple"
+            borderTopColor={'angel'}
+            borderTopWidth={'2'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'2'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
+            height="3/5"
+          >
+            <Columns grow>
+              <Column
+                backgroundColor="death"
+                color="angel"
+                textAlign="center"
+                textTransform="uppercase"
+                alignHorizontal="center"
+                alignVertical="center"
+                paddingRight="12"
+                paddingLeft="12"
+                width="1/1"
+              >
+                <Heading wrap="balance">Missing Yeeter Mission</Heading>
+              </Column>
+            </Columns>
+          </Row>
+          <Row
+            backgroundColor="death"
+            color="angel"
+            textTransform="uppercase"
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
+            height="1/5"
+          >
+            <Footer />
+          </Row>
+        </Rows>
+      ),
     });
   }
 
@@ -79,214 +257,6 @@ app.frame('/yeeter/:yeeterid', async c => {
 
   return c.res({
     action: `/success/${daoid}`,
-    image: '/img/gtg',
-    intents: [
-      <Button.Transaction
-        target={`/yeet/${yeeterid}/${yeetData.data.yeeter.minTribute}`}
-      >
-        YEET
-      </Button.Transaction>,
-    ],
-  });
-});
-
-app.image('/img/missing', c => {
-  return c.res({
-    image: (
-      <Rows grow>
-        <Row
-          backgroundColor="death"
-          color="nipple"
-          textTransform="uppercase"
-          borderTopColor={'angel'}
-          borderTopWidth={'4'}
-          borderRightColor={'angel'}
-          borderRightWidth={'4'}
-          borderLeftColor={'angel'}
-          borderLeftWidth={'4'}
-          height="1/5"
-        >
-          <Header />
-        </Row>
-        <Row
-          backgroundColor="nipple"
-          borderTopColor={'angel'}
-          borderTopWidth={'2'}
-          borderRightColor={'angel'}
-          borderRightWidth={'4'}
-          borderBottomColor={'angel'}
-          borderBottomWidth={'2'}
-          borderLeftColor={'angel'}
-          borderLeftWidth={'4'}
-          height="3/5"
-        >
-          <Columns grow>
-            <Column
-              backgroundColor="death"
-              color="angel"
-              textAlign="center"
-              textTransform="uppercase"
-              alignHorizontal="center"
-              alignVertical="center"
-              paddingRight="12"
-              paddingLeft="12"
-              width="1/1"
-            >
-              <Heading wrap="balance">Missing Yeeter Mission</Heading>
-            </Column>
-          </Columns>
-        </Row>
-        <Row
-          backgroundColor="death"
-          color="angel"
-          textTransform="uppercase"
-          borderRightColor={'angel'}
-          borderRightWidth={'4'}
-          borderBottomColor={'angel'}
-          borderBottomWidth={'4'}
-          borderLeftColor={'angel'}
-          borderLeftWidth={'4'}
-          height="1/5"
-        >
-          <Footer />
-        </Row>
-      </Rows>
-    ),
-  });
-});
-
-app.image('/img/not-active', c => {
-  return c.res({
-    image: (
-      <Rows grow>
-        <Row
-          backgroundColor="death"
-          color="nipple"
-          textTransform="uppercase"
-          borderTopColor={'angel'}
-          borderTopWidth={'4'}
-          borderRightColor={'angel'}
-          borderRightWidth={'4'}
-          borderLeftColor={'angel'}
-          borderLeftWidth={'4'}
-          height="1/5"
-        >
-          <Header />
-        </Row>
-        <Row
-          backgroundColor="nipple"
-          borderTopColor={'angel'}
-          borderTopWidth={'2'}
-          borderRightColor={'angel'}
-          borderRightWidth={'4'}
-          borderBottomColor={'angel'}
-          borderBottomWidth={'2'}
-          borderLeftColor={'angel'}
-          borderLeftWidth={'4'}
-          height="3/5"
-        >
-          <Columns grow>
-            <Column
-              backgroundColor="death"
-              color="angel"
-              textAlign="center"
-              textTransform="uppercase"
-              alignHorizontal="center"
-              alignVertical="center"
-              paddingRight="12"
-              paddingLeft="12"
-              width="1/1"
-            >
-              <Heading wrap="balance">Yeeter Not Active</Heading>
-            </Column>
-          </Columns>
-        </Row>
-        <Row
-          backgroundColor="death"
-          color="angel"
-          textTransform="uppercase"
-          borderRightColor={'angel'}
-          borderRightWidth={'4'}
-          borderBottomColor={'angel'}
-          borderBottomWidth={'4'}
-          borderLeftColor={'angel'}
-          borderLeftWidth={'4'}
-          height="1/5"
-        >
-          <Footer />
-        </Row>
-      </Rows>
-    ),
-  });
-});
-
-app.image('/img/not-found', c => {
-  return c.res({
-    image: (
-      <Rows grow>
-        <Row
-          backgroundColor="death"
-          color="nipple"
-          textTransform="uppercase"
-          borderTopColor={'angel'}
-          borderTopWidth={'4'}
-          borderRightColor={'angel'}
-          borderRightWidth={'4'}
-          borderLeftColor={'angel'}
-          borderLeftWidth={'4'}
-          height="1/5"
-        >
-          <Header />
-        </Row>
-        <Row
-          backgroundColor="nipple"
-          borderTopColor={'angel'}
-          borderTopWidth={'2'}
-          borderRightColor={'angel'}
-          borderRightWidth={'4'}
-          borderBottomColor={'angel'}
-          borderBottomWidth={'2'}
-          borderLeftColor={'angel'}
-          borderLeftWidth={'4'}
-          height="3/5"
-        >
-          <Columns grow>
-            <Column
-              backgroundColor="death"
-              color="angel"
-              textAlign="center"
-              textTransform="uppercase"
-              alignHorizontal="center"
-              alignVertical="center"
-              paddingRight="12"
-              paddingLeft="12"
-              width="1/1"
-            >
-              <Heading wrap="balance">Yeeter Not Found</Heading>
-            </Column>
-          </Columns>
-        </Row>
-        <Row
-          backgroundColor="death"
-          color="angel"
-          textTransform="uppercase"
-          borderRightColor={'angel'}
-          borderRightWidth={'4'}
-          borderBottomColor={'angel'}
-          borderBottomWidth={'4'}
-          borderLeftColor={'angel'}
-          borderLeftWidth={'4'}
-          height="1/5"
-        >
-          <Footer />
-        </Row>
-      </Rows>
-    ),
-  });
-});
-
-app.image('/img/gtg', c => {
-  return c.res({
     image: (
       <Rows grow>
         <Row
@@ -326,10 +296,7 @@ app.image('/img/gtg', c => {
               paddingLeft="12"
               width="1/2"
             >
-              <Heading wrap="balance">
-                {/* {name} */}
-                Name
-              </Heading>
+              <Heading wrap="balance">{name}</Heading>
             </Column>
             <Column
               backgroundColor="death"
@@ -341,8 +308,7 @@ app.image('/img/gtg', c => {
               width="1/2"
             >
               <Heading size="24" weight="400">
-                {/* {mission} */}
-                Mission
+                {mission}
               </Heading>
             </Column>
           </Columns>
@@ -363,35 +329,38 @@ app.image('/img/gtg', c => {
             <Column alignHorizontal="center" alignVertical="center" width="1/4">
               <Heading size="18">Goal</Heading>
               <Text size="18" weight="400">
-                {/* {goal} ETH */}
-                Goal
+                {goal} ETH
               </Text>
             </Column>
             <Column alignHorizontal="center" alignVertical="center" width="1/4">
               <Heading size="18">Raised</Heading>
               <Text size="18" weight="400">
-                {/* {balance} ETH */}
-                Balance
+                {balance} ETH
               </Text>
             </Column>
             <Column alignHorizontal="center" alignVertical="center" width="1/4">
               <Heading size="18">Ends</Heading>
               <Text size="18" weight="400">
-                {/* {endTime} */}
-                End Time
+                {endTime}
               </Text>
             </Column>
             <Column alignHorizontal="center" alignVertical="center" width="1/4">
               <Heading size="18">Tribute</Heading>
               <Text size="18" weight="400">
-                {/* {minTribute} ETH */}
-                Min ETH
+                {minTribute} ETH
               </Text>
             </Column>
           </Columns>
         </Row>
       </Rows>
     ),
+    intents: [
+      <Button.Transaction
+        target={`/yeet/${yeeterid}/${yeetData.data.yeeter.minTribute}`}
+      >
+        YEET
+      </Button.Transaction>,
+    ],
   });
 });
 
