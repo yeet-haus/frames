@@ -42,7 +42,7 @@ app.frame('/yeeter/:yeeterid', async c => {
   if (!yeetData.data.yeeter) {
     return c.res({
       image: (
-        <Rows grow>
+        <Rows grow flex="1" flexFlow="row wrap" flexShrink="0">
           <Row
             backgroundColor="death"
             color="nipple"
@@ -69,7 +69,7 @@ app.frame('/yeeter/:yeeterid', async c => {
             borderLeftWidth="4"
             height="3/5"
           >
-            <Columns grow>
+            <Columns grow flex="1" flexFlow="row wrap" flexShrink="0">
               <Column
                 backgroundColor="death"
                 color="angel"
@@ -112,7 +112,7 @@ app.frame('/yeeter/:yeeterid', async c => {
   if (!isActive) {
     return c.res({
       image: (
-        <Rows grow>
+        <Rows grow flex="1" flexFlow="row wrap" flexShrink="0">
           <Row
             backgroundColor="death"
             color="nipple"
@@ -139,7 +139,7 @@ app.frame('/yeeter/:yeeterid', async c => {
             borderLeftWidth="4"
             height="3/5"
           >
-            <Columns grow>
+            <Columns grow flex="1" flexFlow="row wrap" flexShrink="0">
               <Column
                 backgroundColor="death"
                 color="angel"
@@ -185,7 +185,7 @@ app.frame('/yeeter/:yeeterid', async c => {
   if (!metaRes.data.records[0]) {
     return c.res({
       image: (
-        <Rows grow>
+        <Rows grow flex="1" flexFlow="row wrap" flexShrink="0">
           <Row
             backgroundColor="death"
             color="nipple"
@@ -212,7 +212,7 @@ app.frame('/yeeter/:yeeterid', async c => {
             borderLeftWidth="4"
             height="3/5"
           >
-            <Columns grow>
+            <Columns grow flex="1" flexFlow="row wrap" flexShrink="0">
               <Column
                 backgroundColor="death"
                 color="angel"
@@ -257,7 +257,7 @@ app.frame('/yeeter/:yeeterid', async c => {
   return c.res({
     action: `/success/${daoid}`,
     image: (
-      <Rows grow>
+      <Rows grow flex="1" flexFlow="row wrap" flexShrink="0">
         <Row
           backgroundColor="death"
           color="nipple"
@@ -284,7 +284,7 @@ app.frame('/yeeter/:yeeterid', async c => {
           borderLeftWidth="4"
           height="3/5"
         >
-          <Columns grow>
+          <Columns grow flex="1" flexFlow="row wrap" flexShrink="0">
             <Column
               backgroundColor="death"
               color="angel"
@@ -324,7 +324,7 @@ app.frame('/yeeter/:yeeterid', async c => {
           borderLeftWidth="4"
           height="1/5"
         >
-          <Columns grow>
+          <Columns grow flex="1" flexFlow="row wrap" flexShrink="0">
             <Column alignHorizontal="center" alignVertical="center" width="1/4">
               <Heading size="18">Goal</Heading>
               <Text size="18" weight="400">
