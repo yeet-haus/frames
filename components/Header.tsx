@@ -1,3 +1,4 @@
+/** @jsxImportSource frog/jsx */
 import { Column, Columns, Heading } from '../api/ui.js';
 
 export const Header = () => {
