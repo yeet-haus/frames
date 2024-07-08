@@ -42,34 +42,34 @@ app.frame('/yeeter/:yeeterid', async c => {
   if (!yeetData.data.yeeter) {
     return c.res({
       image: (
-        <Rows grow flex="1" flexFlow="row wrap" flexShrink="0">
+        <Rows grow>
           <Row
             backgroundColor="death"
             color="nipple"
             textTransform="uppercase"
-            borderTopColor="angel"
-            borderTopWidth="4"
-            borderRightColor="angel"
-            borderRightWidth="4"
-            borderLeftColor="angel"
-            borderLeftWidth="4"
+            borderTopColor={'angel'}
+            borderTopWidth={'4'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="1/5"
           >
             <Header />
           </Row>
           <Row
             backgroundColor="nipple"
-            borderTopColor="angel"
-            borderTopWidth="2"
-            borderRightColor="angel"
-            borderRightWidth="4"
-            borderBottomColor="angel"
-            borderBottomWidth="2"
-            borderLeftColor="angel"
-            borderLeftWidth="4"
+            borderTopColor={'angel'}
+            borderTopWidth={'2'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'2'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="3/5"
           >
-            <Columns grow flex="1" flexFlow="row wrap" flexShrink="0">
+            <Columns grow>
               <Column
                 backgroundColor="death"
                 color="angel"
@@ -89,12 +89,12 @@ app.frame('/yeeter/:yeeterid', async c => {
             backgroundColor="death"
             color="angel"
             textTransform="uppercase"
-            borderRightColor="angel"
-            borderRightWidth="4"
-            borderBottomColor="angel"
-            borderBottomWidth="4"
-            borderLeftColor="angel"
-            borderLeftWidth="4"
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="1/5"
           >
             <Footer />
@@ -112,34 +112,34 @@ app.frame('/yeeter/:yeeterid', async c => {
   if (!isActive) {
     return c.res({
       image: (
-        <Rows grow flex="1" flexFlow="row wrap" flexShrink="0">
+        <Rows grow>
           <Row
             backgroundColor="death"
             color="nipple"
             textTransform="uppercase"
-            borderTopColor="angel"
-            borderTopWidth="4"
-            borderRightColor="angel"
-            borderRightWidth="4"
-            borderLeftColor="angel"
-            borderLeftWidth="4"
+            borderTopColor={'angel'}
+            borderTopWidth={'4'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="1/5"
           >
             <Header />
           </Row>
           <Row
             backgroundColor="nipple"
-            borderTopColor="angel"
-            borderTopWidth="2"
-            borderRightColor="angel"
-            borderRightWidth="4"
-            borderBottomColor="angel"
-            borderBottomWidth="2"
-            borderLeftColor="angel"
-            borderLeftWidth="4"
+            borderTopColor={'angel'}
+            borderTopWidth={'2'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'2'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="3/5"
           >
-            <Columns grow flex="1" flexFlow="row wrap" flexShrink="0">
+            <Columns grow>
               <Column
                 backgroundColor="death"
                 color="angel"
@@ -159,12 +159,12 @@ app.frame('/yeeter/:yeeterid', async c => {
             backgroundColor="death"
             color="angel"
             textTransform="uppercase"
-            borderRightColor="angel"
-            borderRightWidth="4"
-            borderBottomColor="angel"
-            borderBottomWidth="4"
-            borderLeftColor="angel"
-            borderLeftWidth="4"
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="1/5"
           >
             <Footer />
@@ -185,34 +185,34 @@ app.frame('/yeeter/:yeeterid', async c => {
   if (!metaRes.data.records[0]) {
     return c.res({
       image: (
-        <Rows grow flex="1" flexFlow="row wrap" flexShrink="0">
+        <Rows grow>
           <Row
             backgroundColor="death"
             color="nipple"
             textTransform="uppercase"
-            borderTopColor="angel"
-            borderTopWidth="4"
-            borderRightColor="angel"
-            borderRightWidth="4"
-            borderLeftColor="angel"
-            borderLeftWidth="4"
+            borderTopColor={'angel'}
+            borderTopWidth={'4'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="1/5"
           >
             <Header />
           </Row>
           <Row
             backgroundColor="nipple"
-            borderTopColor="angel"
-            borderTopWidth="2"
-            borderRightColor="angel"
-            borderRightWidth="4"
-            borderBottomColor="angel"
-            borderBottomWidth="2"
-            borderLeftColor="angel"
-            borderLeftWidth="4"
+            borderTopColor={'angel'}
+            borderTopWidth={'2'}
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'2'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="3/5"
           >
-            <Columns grow flex="1" flexFlow="row wrap" flexShrink="0">
+            <Columns grow>
               <Column
                 backgroundColor="death"
                 color="angel"
@@ -232,12 +232,12 @@ app.frame('/yeeter/:yeeterid', async c => {
             backgroundColor="death"
             color="angel"
             textTransform="uppercase"
-            borderRightColor="angel"
-            borderRightWidth="4"
-            borderBottomColor="angel"
-            borderBottomWidth="4"
-            borderLeftColor="angel"
-            borderLeftWidth="4"
+            borderRightColor={'angel'}
+            borderRightWidth={'4'}
+            borderBottomColor={'angel'}
+            borderBottomWidth={'4'}
+            borderLeftColor={'angel'}
+            borderLeftWidth={'4'}
             height="1/5"
           >
             <Footer />
@@ -257,34 +257,34 @@ app.frame('/yeeter/:yeeterid', async c => {
   return c.res({
     action: `/success/${daoid}`,
     image: (
-      <Rows grow flex="1" flexFlow="row wrap" flexShrink="0">
+      <Rows grow>
         <Row
           backgroundColor="death"
           color="nipple"
           textTransform="uppercase"
-          borderTopColor="angel"
-          borderTopWidth="4"
-          borderRightColor="angel"
-          borderRightWidth="4"
-          borderLeftColor="angel"
-          borderLeftWidth="4"
+          borderTopColor={'angel'}
+          borderTopWidth={'4'}
+          borderRightColor={'angel'}
+          borderRightWidth={'4'}
+          borderLeftColor={'angel'}
+          borderLeftWidth={'4'}
           height="1/5"
         >
           <Header />
         </Row>
         <Row
           backgroundColor="nipple"
-          borderTopColor="angel"
-          borderTopWidth="2"
-          borderRightColor="angel"
-          borderRightWidth="4"
-          borderBottomColor="angel"
-          borderBottomWidth="2"
-          borderLeftColor="angel"
-          borderLeftWidth="4"
+          borderTopColor={'angel'}
+          borderTopWidth={'2'}
+          borderRightColor={'angel'}
+          borderRightWidth={'4'}
+          borderBottomColor={'angel'}
+          borderBottomWidth={'2'}
+          borderLeftColor={'angel'}
+          borderLeftWidth={'4'}
           height="3/5"
         >
-          <Columns grow flex="1" flexFlow="row wrap" flexShrink="0">
+          <Columns grow>
             <Column
               backgroundColor="death"
               color="angel"
@@ -316,15 +316,15 @@ app.frame('/yeeter/:yeeterid', async c => {
           backgroundColor="death"
           color="angel"
           textTransform="uppercase"
-          borderRightColor="angel"
-          borderRightWidth="4"
-          borderBottomColor="angel"
-          borderBottomWidth="4"
-          borderLeftColor="angel"
-          borderLeftWidth="4"
+          borderRightColor={'angel'}
+          borderRightWidth={'4'}
+          borderBottomColor={'angel'}
+          borderBottomWidth={'4'}
+          borderLeftColor={'angel'}
+          borderLeftWidth={'4'}
           height="1/5"
         >
-          <Columns grow flex="1" flexFlow="row wrap" flexShrink="0">
+          <Columns grow>
             <Column alignHorizontal="center" alignVertical="center" width="1/4">
               <Heading size="18">Goal</Heading>
               <Text size="18" weight="400">
